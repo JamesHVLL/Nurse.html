@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursing Student NCLEX Prep Trivia - 9 Systems Master Edition</title>
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-dark: #0369a1;
+            --success: #16a34a;
+            --error: #dc2626;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 750px;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            margin: 1rem;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        h1, h2 {
+            color: var(--primary-dark);
+            text-align: center;
+            margin-top: 0;
+        }
+
+        p {
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background-color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        .option-btn {
+            background-color: #f1f5f9;
+            color: var(--text);
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+
+        .option-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        .option-btn.correct {
+            background-color: var(--success) !important;
+            color: white;
+            border-color: var(--success);
+        }
+
+        .option-btn.incorrect {
+            background-color: var(--error) !important;
+            color: white;
+            border-color: var(--error);
+        }
+
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .stats-box {
+            background: #f8fafc;
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .feedback-text {
+            font-weight: bold;
+            text-align: center;
+            margin: 1rem 0;
+            min-height: 1.5rem;
+        }
+
+        .progress-bar {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="main-menu" class="screen active">
+        <h1>🩺 NCLEX Master Trivia (9 Systems)</h1>
+        <p>Comprehensive clinical reasoning questions across all 9 core medical-surgical systems.</p>
+        <button class="btn" onclick="startTestKnowledgeMode()">Test Knowledge Mode (All Systems)</button>
+        <button class="btn btn-secondary" onclick="showCategoryMenu()">Choose Category Mode</button>
+    </div>
+
+    <div id="category-menu" class="screen">
+        <h2>Select a System</h2>
+        <div class="category-grid" id="category-buttons">
+            </div>
+        <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="showScreen('main-menu')">Back to Main Menu</button>
+    </div>
+
+    <div id="quiz-screen" class="screen">
+        <div class="progress-bar" id="progress-indicator">Question 1 of 50</div>
+        <h3 id="question-text">Question goes here?</h3>
+        <div id="options-container">
+            </div>
+        <div class="feedback-text" id="feedback-display"></div>
+        <button class="btn" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question</button>
+    </div>
+
+    <div id="results-screen" class="screen">
+        <h2>Quiz Complete! 🎉</h2>
+        <div class="stats-box" id="results-stats">
+            </div>
+        <button class="btn" onclick="showScreen('main-menu')">Return to Main Menu</button>
+    </div>
+
+</div>
+
+<script>
+    // Complete 9-System Master Question Bank
+    const questionBank = [
+        // ==========================================
+        // 1. CARDIOVASCULAR SYSTEM
+        // ==========================================
+        { 
+            category: "Cardiovascular System", 
+            question: "A patient with left-sided heart failure is most likely to present with which clinical symptom?", 
+            options: [
+                { text: "Jugular venous distension and peripheral pitting edema due to systemic venous pressure elevation", correct: false },
+                { text: "Exertional dyspnea, orthopnea, and fine basilar crackles secondary to pulmonary congestion", correct: true },
+                { text: "Significant hepatosplenomegaly and ascites caused by backward hepatic outflow resistance", correct: false },
+                { text: "Pulsatile abdominal masses and bounding peripheral pulses due to widened arterial pressure gradients", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "Which ECG change is most indicative of acute myocardial injury (STEMI)?", 
+            options: [
+                { text: "Prolonged PR interval exceeding 0.20 seconds with delayed AV nodal conduction", correct: false },
+                { text: "Concordant ST-segment elevation in contiguous leads reflecting transmural myocardial ischemia", correct: true },
+                { text: "Isolated deep T-wave inversions in leads V1 through V3 without enzyme elevation", correct: false },
+                { text: "Widened QRS complexes secondary to delayed intraventricular conduction block", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "What is the primary hemodynamic action of digoxin in treating heart failure?", 
+            options: [
+                { text: "Direct systemic arterial vasodilation to instantly reduce total peripheral afterload", correct: false },
+                { text: "Inhibition of sodium-potassium pumps resulting in increased myocardial contractility and positive inotropy", correct: true },
+                { text: "Rapid stimulation of renal tubular sodium and water excretion to clear circulating volume", correct: false },
+                { text: "Suppression of sympathetic nervous outflow to lower baseline resting heart rate", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "Which lab marker is most specific and sensitive for myocardial cell necrosis?", 
+            options: [
+                { text: "Elevated serum creatine kinase MB isoenzyme (CK-MB) levels", correct: false },
+                { text: "Rapidly rising serum myoglobin concentrations within two hours of onset", correct: false },
+                { text: "Elevated cardiac-specific Troponin T and Troponin I fractions", correct: true },
+                { text: "Increased B-type natriuretic peptide (BNP) release from stretched ventricles", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "A patient diagnosed with acute infective endocarditis is at highest risk for developing which systemic complication?", 
+            options: [
+                { text: "Diffuse alveolar hemorrhage and acute respiratory failure", correct: false },
+                { text: "Systemic arterial septic embolization leading to focal cerebral ischemia or stroke", correct: true },
+                { text: "Fulminant acute hepatic failure from secondary portal hypertension", correct: false },
+                { text: "Spontaneous tension pneumothorax secondary to septic lung cavitations", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 2. RESPIRATORY SYSTEM
+        // ==========================================
+        { 
+            category: "Respiratory System", 
+            question: "An arterial blood gas report shows pH 7.30, PaCO2 55 mmHg, HCO3 24 mEq/L. What is the interpretation?", 
+            options: [
+                { text: "Uncompensated respiratory acidosis due to alveolar hypoventilation", correct: true },
+                { text: "Partially compensated metabolic alkalosis with respiratory retention", correct: false },
+                { text: "Acute metabolic acidosis secondary to anaerobic cellular metabolism", correct: false },
+                { text: "Uncompensated respiratory alkalosis caused by hyperventilation", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "What is the primary mechanism of action for short-acting beta-2 agonists (like Albuterol)?", 
+            options: [
+                { text: "Suppression of systemic inflammatory cascades within bronchial walls", correct: false },
+                { text: "Relaxation of bronchial smooth muscle through intracellular cyclic AMP stimulation", correct: true },
+                { text: "Inhibition of excessive airway mucus gland hypersecretion", correct: false },
+                { text: "Direct stimulation of central medullary respiratory drive centers", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "Which breathing technique is most effective for a patient with COPD to promote exhalation of trapped air?", 
+            options: [
+                { text: "Rapid, shallow chest breathing patterns to maximize minute ventilation", correct: false },
+                { text: "Pursed-lip breathing to create back-pressure and prevent early airway collapse", correct: true },
+                { text: "Heavy diaphragmatic breathing paired with intense physical exertion", correct: false },
+                { text: "Maximum incentive spirometry targets set to 5000 mL volume capacity", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "What is the primary trigger for the respiratory drive in healthy individuals?", 
+            options: [
+                { text: "Declining arterial oxygen tension levels (hypoxemia)", correct: false },
+                { text: "Elevated arterial carbon dioxide concentration levels (hypercapnia)", correct: true },
+                { text: "Acidosis-driven peripheral chemoreceptor firing", correct: false },
+                { text: "Systemic baroreceptor feedback responding to elevated blood pressure", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "Which respiratory condition is characterized by irreversible enlargement of air spaces distal to terminal bronchioles?", 
+            options: [
+                { text: "Chronic obstructive bronchitis with mucus hypersecretion", correct: false },
+                { text: "Pulmonary emphysema with loss of elastic recoil properties", correct: true },
+                { text: "Intrinsic allergic asthma with reversible bronchospasm", correct: false },
+                { text: "Cystic bronchiectasis with structural airway distortion", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 3. NEUROLOGICAL SYSTEM
+        // ==========================================
+        { 
+            category: "Neurological System", 
+            question: "Which finding on a neurological assessment indicates early clinical deterioration in a patient with increased intracranial pressure (ICP)?", 
+            options: [
+                { text: "Sudden bilateral fixed and dilated pupils", correct: false },
+                { text: "Decreasing level of consciousness and subtle changes in mentation", correct: true },
+                { text: "Cushing's triad consisting of bradycardia, hypertension, and irregular respirations", correct: false },
+                { text: "Decerebrate posturing response to noxious stimuli", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "What is the primary pharmacological goal when administering t-PA (alteplase) to an eligible acute ischemic stroke patient?", 
+            options: [
+                { text: "Enzymatically lyse the acute thrombus and restore cerebral tissue perfusion", correct: true },
+                { text: "Permanently lower systemic blood pressure below 100/60 mmHg", correct: false },
+                { text: "Induce deep barbiturate coma to decrease cerebral metabolic demand", correct: false },
+                { text: "Prevent future platelet aggregation without dissolving existing clots", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "Which cranial nerve is responsible for facial muscle movement and expression?", 
+            options: [
+                { text: "Cranial Nerve V (Trigeminal nerve)", correct: false },
+                { text: "Cranial Nerve VII (Facial nerve)", correct: true },
+                { text: "Cranial Nerve IX (Glossopharyngeal nerve)", correct: false },
+                { text: "Cranial Nerve XII (Hypoglossal nerve)", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "What characteristic symptom is expected in a patient experiencing a tonic-clonic seizure during the postictal phase?", 
+            options: [
+                { text: "Hyperactive reflexes and extreme manic agitation", correct: false },
+                { text: "Deep sleep, profound fatigue, and potential temporary confusion", correct: true },
+                { text: "Continuous rhythmic muscle jerking across all extremities", correct: false },
+                { text: "Fixed blank stare with brief lapses in awareness", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "Which diagnostic sign indicates meningeal irritation during a physical examination for suspected meningitis?", 
+            options: [
+                { text: "Positive Kernig's and Brudzinski's signs", correct: true },
+                { text: "Positive Babinski reflex bilaterally in adults", correct: false },
+                { text: "Positive Trousseau's sign in the upper arm", correct: false },
+                { text: "Positive Romberg test with eyes closed", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 4. RENAL & URINARY SYSTEM
+        // ==========================================
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which laboratory finding is most characteristic of prerenal acute kidney injury (AKI)?", 
+            options: [
+                { text: "BUN to serum creatinine ratio exceeding 20:1 with normal urine sediment", correct: true },
+                { text: "Elevated fractional excretion of sodium (FENa) greater than 3%", correct: false },
+                { text: "Presence of muddy brown granular casts in urinalysis", correct: false },
+                { text: "Fixed urinary specific gravity at 1.010 regardless of hydration status", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "What is the primary mechanism of action for loop diuretics (like furosemide)?", 
+            options: [
+                { text: "Inhibition of sodium and chloride reabsorption in the ascending loop of Henle", correct: true },
+                { text: "Competitive blockade of aldosterone receptors in the distal convoluted tubule", correct: false },
+                { text: "Osmotic drawing of water from intracellular spaces into the proximal tubule", correct: false },
+                { text: "Carbonic anhydrase enzyme inhibition in renal tubular cells", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which electrolyte imbalance is most life-threatening in end-stage renal disease (ESRD) due to cardiac arrhythmogenic risk?", 
+            options: [
+                { text: "Severe hypocalcemia", correct: false },
+                { text: "Hyperkalemia", correct: true },
+                { text: "Hyponatremia", correct: false },
+                { text: "Hypomagnesemia", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "What assessment finding is critical when managing a newly placed arteriovenous (AV) fistula for hemodialysis?", 
+            options: [
+                { text: "Presence of a palpable thrill and auscultated bruit over the access site", correct: true },
+                { text: "Cool, pale skin distal to the fistula site with absent pulses", correct: false },
+                { text: "Routine use of the access arm for blood pressure measurements", correct: false },
+                { text: "Tight circumferential dressing application around the midpoint", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which clinical manifestation is classic for glomerulonephritis?", 
+            options: [
+                { text: "Polyuria, extreme thirst, and rapid weight loss", correct: false },
+                { text: "Periorbital edema, smoky/cola-colored urine, and hypertension", correct: true },
+                { text: "Painless gross hematuria without other physical findings", correct: false },
+                { text: "Foul-smelling cloudy urine accompanied by severe burning", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 5. GASTROINTESTINAL SYSTEM
+        // ==========================================
+        { 
+            category: "Gastrointestinal System", 
+            question: "A patient with acute appendicitis typically localizes abdominal pain to which anatomical location?", 
+            options: [
+                { text: "Right upper quadrant radiating to the right scapula", correct: false },
+                { text: "McBurney's point located in the right lower quadrant", correct: true },
+                { text: "Left lower quadrant associated with diverticular pockets", correct: false },
+                { text: "Epigastric region radiating directly through to the back", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "Which complication is most associated with severe acute pancreatitis requiring intensive nursing monitoring?", 
+            options: [
+                { text: "Acute respiratory distress syndrome (ARDS) and systemic inflammatory response", correct: true },
+                { text: "Spontaneous renal tubular necrosis and hypercalcemia", correct: false },
+                { text: "Chronic iron-deficiency anemia due to slow bleeding", correct: false },
+                { text: "Mechanical small bowel obstruction from adhesions", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "What is the primary pathophysiological cause of esophageal varices in patients with cirrhosis?", 
+            options: [
+                { text: "Portal hypertension causing blood to back up into collateral portosystemic channels", correct: true },
+                { text: "Autoimmune destruction of the lower esophageal mucosal lining", correct: false },
+                { text: "Chronic ingestion of highly acidic chemical substances", correct: false },
+                { text: "Congenital weakness of the esophageal muscular sphincter layers", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "Which dietary instruction is appropriate for a patient newly diagnosed with active celiac disease?", 
+            options: [
+                { text: "Eliminate all foods containing wheat, barley, and rye", correct: true },
+                { text: "Restrict daily dairy intake and completely avoid fresh fruits", correct: false },
+                { text: "Increase consumption of whole-grain oat and wheat breads", correct: false },
+                { text: "Follow a clear liquid diet containing high sugar concentrates", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "What assessment finding indicates effective decompression of the stomach via a nasogastric (NG) tube set to low intermittent suction?", 
+            options: [
+                { text: "Firm, distended abdomen with high-pitched tinkling bowel sounds", correct: false },
+                { text: "Decreased abdominal distension, absence of nausea, and steady drainage output", correct: true },
+                { text: "Continuous bright red blood filling the collection canister", correct: false },
+                { text: "Patient report of severe cramping and upper abdominal pressure", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 6. ENDOCRINE SYSTEM
+        // ==========================================
+        { 
+            category: "Endocrine System", 
+            question: "Which clinical features differentiate Diabetic Ketoacidosis (DKA) from Hyperglycemic Hyperosmolar State (HHS)?", 
+            options: [
+                { text: "Presence of severe ketoacidosis, Kussmaul respirations, and ketonuria in DKA", correct: true },
+                { text: "Extremely high blood glucose levels exceeding 1000 mg/dL unique to DKA", correct: false },
+                { text: "Normal serum pH and bicarbonate values observed during active DKA episodes", correct: false },
+                { text: "Absence of dehydration or electrolyte imbalance in HHS states", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What is the primary hormonal deficiency responsible for Diabetes Insipidus (DI)?", 
+            options: [
+                { text: "Insulin production failure from pancreatic beta cells", correct: false },
+                { text: "Antidiuretic hormone (ADH) deficiency or cellular resistance", correct: true },
+                { text: "Excessive systemic cortisol hormone secretion", correct: false },
+                { text: "Primary hyperparathyroidism with calcium dumping", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "Which clinical sign suggests severe hypocalcemia following a thyroidectomy procedure?", 
+            options: [
+                { text: "Positive Trousseau's and Chvostek's signs", correct: true },
+                { text: "Bradycardia and moist warm skin texture", correct: false },
+                { text: "Marked exophthalmos and lid lag presentation", correct: false },
+                { text: "Hypertension with central truncal obesity", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What classic physical changes are observed in a patient with untreated Cushing's syndrome?", 
+            options: [
+                { text: "Moon face, buffalo hump, truncal obesity, and purple abdominal striae", correct: true },
+                { text: "Extreme weight loss, bronze skin pigmentation, and hypotension", correct: false },
+                { text: "Bulging eyeballs, fine tremors, and heat intolerance", correct: false },
+                { text: "Cold intolerance, dry coarse skin, and periorbital puffiness", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What is the priority nursing intervention during an acute adrenal crisis (Addisonian crisis)?", 
+            options: [
+                { text: "Administer rapid intravenous normal saline fluid boluses and IV hydrocortisone", correct: true },
+                { text: "Administer high-dose oral sliding-scale regular insulin", correct: false },
+                { text: "Restrict daily sodium intake to prevent volume overload", correct: false },
+                { text: "Apply ice packs to lower core body temperature rapidly", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 7. MUSCULOSKELETAL SYSTEM
+        // ==========================================
+        { 
+            category: "Musculoskeletal System", 
+            question: "What are the classic '5 Ps' of neurovascular compromise associated with compartment syndrome?", 
+            options: [
+                { text: "Pain, pallor, pulselessness, paresthesia, and paralysis", correct: true },
+                { text: "Pressure, pus, pyrexia, petechiae, and palpitations", correct: false },
+                { text: "Perfusion, pigmentation, paralysis, polyuria, and pain", correct: false },
+                { text: "Paralysis, purpura, pitting edema, pallor, and pruritus", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "Which nursing intervention is essential when caring for a patient in skeletal traction?", 
+            options: [
+                { text: "Ensure weights hang freely and do not touch the floor or bed frame", correct: true },
+                { text: "Temporarily lift or remove traction weights during routine repositioning", correct: false },
+                { text: "Apply firm pressure directly over pin insertion sites to stop drainage", correct: false },
+                { text: "Loosen traction ropes whenever the patient reports muscle spasms", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "What clinical sign is most indicative of a fat embolism syndrome following a long bone fracture?", 
+            options: [
+                { text: "Petechial rash across the chest, neck, and axilla combined with respiratory distress", correct: true },
+                { text: "Sudden high fever and localized purulent drainage from the fracture site", correct: false },
+                { text: "Immediate drop in serum potassium levels with severe muscle tetany", correct: false },
+                { text: "Profound bradycardia accompanied by widening pulse pressures", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "Which physical finding is characteristic of osteoarthritis compared to rheumatoid arthritis?", 
+            options: [
+                { text: "Asymmetrical joint involvement associated with wear-and-tear and bone spurs", correct: true },
+                { text: "Symmetrical systemic joint inflammation with characteristic ulnar deviation", correct: false },
+                { text: "Early morning joint stiffness lasting longer than one full hour", correct: false },
+                { text: "Systemic symptoms including low-grade fever, fatigue, and malaise", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "What instruction should be reinforced for a patient learning to walk with crutches using a three-point gait?", 
+            options: [
+                { text: "Advance both crutches and the weak leg simultaneously, then step forward with the strong leg", correct: true },
+                { text: "Bear full body weight on the axillae while supporting balance with hand grips", correct: false },
+                { text: "Move both crutches forward followed by dragging both feet together", correct: false },
+                { text: "Alternate moving each crutch with the opposite foot in lockstep fashion", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 8. HEMATOLOGIC & IMMUNOLOGIC SYSTEM
+        // ==========================================
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which blood product transfusion reaction requires the nurse to stop the infusion immediately and disconnect the tubing?", 
+            options: [
+                { text: "Acute hemolytic transfusion reaction characterized by flank pain, fever, and hypotension", correct: true },
+                { text: "Mild urticaria and localized itching controlled with oral diphenhydramine", correct: false },
+                { text: "Mild transient febrile response without changes in vital signs", correct: false },
+                { text: "Slight fluid volume expansion noted in stable baseline readings", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "What laboratory parameter is the primary indicator used to guide neutropenic precautions in a cancer patient?", 
+            options: [
+                { text: "Absolute Neutrophil Count (ANC)", correct: true },
+                { text: "Total platelet count volume", correct: false },
+                { text: "Erythrocyte sedimentation rate (ESR)", correct: false },
+                { text: "Activated partial thromboplastin time (aPTT)", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which condition is characterized by widespread microvascular clotting consuming platelets and clotting factors, leading to simultaneous bleeding?", 
+            options: [
+                { text: "Disseminated Intravascular Coagulation (DIC)", correct: true },
+                { text: "Idiopathic Thrombocytopenic Purpura (ITP)", correct: false },
+                { text: "Von Willebrand disease deficiency", correct: false },
+                { text: "Polycythemia vera red cell overproduction", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "What is the primary pathophysiological defect in Hemophilia A?", 
+            options: [
+                { text: "Deficiency or abnormality of coagulation Factor VIII", correct: true },
+                { text: "Autoimmune destruction of circulating blood platelets", correct: false },
+                { text: "Inability of red blood cells to carry adequate oxygen molecules", correct: false },
+                { text: "Excessive bone marrow production of white blood blast cells", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which instruction is essential for a patient prescribed oral iron supplements for iron-deficiency anemia?", 
+            options: [
+                { text: "Take iron with vitamin C (ascorbic acid) to enhance absorption and expect dark stools", correct: true },
+                { text: "Crush tablets and mix with milk or antacids to prevent gastric irritation", correct: false },
+                { text: "Take medication right before bedtime while lying completely flat", correct: false },
+                { text: "Expect bright red stools as a normal sign of effective drug absorption", correct: false }
+            ] 
+        },
+
+        // ==========================================
+        // 9. INTEGUMENTARY & SENSORY SYSTEM
+        // ==========================================
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Using the Rule of Nines, what is the estimated total body surface area (TBSA) burned for an adult client with burns to the entire anterior trunk and both entire arms?", 
+            options: [
+                { text: "36% TBSA burn", correct: true },
+                { text: "27% TBSA burn", correct: false },
+                { text: "45% TBSA burn", correct: false },
+                { text: "18% TBSA burn", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Which staging classification describes a pressure injury with full-thickness skin loss where adipose tissue is visible and granulation tissue is present?", 
+            options: [
+                { text: "Stage 3 Pressure Injury", correct: true },
+                { text: "Stage 2 Pressure Injury", correct: false },
+                { text: "Stage 4 Pressure Injury", correct: false },
+                { text: "Unstageable Pressure Injury", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "What clinical presentation is characteristic of acute angle-closure glaucoma, representing an ocular emergency?", 
+            options: [
+                { text: "Sudden severe eye pain, blurred vision, colored halos around lights, and a fixed mid-dilated pupil", correct: true },
+                { text: "Gradual loss of peripheral vision with painless tunnel vision development", correct: false },
+                { text: "Painless cloudy vision with progressive glare sensitivity over years", correct: false },
+                { text: "Bilateral purulent discharge with intense itching and morning crusting", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Which instruction should be provided to a patient following cataract extraction surgery?", 
+            options: [
+                { text: "Avoid bending at the waist, heavy lifting, or straining to prevent intraocular pressure spikes", correct: true },
+                { text: "Sleep flat on the operative side to promote proper drainage of the eye", correct: false },
+                { text: "Scrub the operative eye vigorously with soap and water twice daily", correct: false },
+                { text: "Resume heavy contact sports immediately once the eye patch is removed", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "What is a primary clinical manifestation associated with Meniere's disease?", 
+            options: [
+                { text: "Episodic vertigo, tinnitus, fluctuating sensorineural hearing loss, and a feeling of fullness in the ear", correct: true },
+                { text: "Chronic painless drainage from the external auditory canal", correct: false },
+                { text: "Sudden conductive hearing loss triggered by loud environmental noises", correct: false },
+                { text: "Severe sharp pain radiating from the jaw to the middle ear structure", correct: false }
+            ] 
+        }
+    ];
+
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let score = 0;
+    let categoryStats = {};
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+    }
+
+    function startTestKnowledgeMode() {
+        currentQuestions = shuffleArray([...questionBank]);
+        initQuiz();
+    }
+
+    function showCategoryMenu() {
+        const categories = [...new Set(questionBank.map(q => q.category))];
+        const grid = document.getElementById("category-buttons");
+        grid.innerHTML = "";
+        
+        categories.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.textContent = cat;
+            btn.onclick = () => startCategoryMode(cat);
+            grid.appendChild(btn);
+        });
+
+        showScreen("category-menu");
+    }
+
+    function startCategoryMode(category) {
+        currentQuestions = shuffleArray(questionBank.filter(q => q.category === category));
+        initQuiz();
+    }
+
+    function initQuiz() {
+        currentIndex = 0;
+        score = 0;
+        categoryStats = {};
+        showScreen("quiz-screen");
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        if (currentIndex >= currentQuestions.length) {
+            showResults();
+            return;
+        }
+
+        const q = currentQuestions[currentIndex];
+        document.getElementById("progress-indicator").textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+        document.getElementById("question-text").textContent = q.question;
+        document.getElementById("feedback-display").textContent = "";
+        document.getElementById("next-btn").style.display = "none";
+
+        const container = document.getElementById("options-container");
+        container.innerHTML = "";
+
+        let shuffledOptions = shuffleArray([...q.options]);
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement("button");
+            btn.className = "btn option-btn";
+            btn.textContent = opt.text;
+            btn.onclick = () => selectOption(opt.correct, btn, shuffledOptions);
+            container.appendChild(btn);
+        });
+    }
+
+    function selectOption(isCorrect, selectedBtn, allOptions) {
+        const container = document.getElementById("options-container");
+        const buttons = container.getElementsByTagName("button");
+        
+        for (let btn of buttons) {
+            btn.disabled = true;
+            const matchingOpt = allOptions.find(o => o.text === btn.textContent);
+            if (matchingOpt && matchingOpt.correct) {
+                btn.classList.add("correct");
+            }
+        }
+
+        const feedback = document.getElementById("feedback-display");
+        const q = currentQuestions[currentIndex];
+
+        if (!categoryStats[q.category]) {
+            categoryStats[q.category] = { total: 0, correct: 0 };
+        }
+        categoryStats[q.category].total++;
+
+        if (isCorrect) {
+            selectedBtn.classList.add("correct");
+            feedback.style.color = "var(--success)";
+            feedback.textContent = "Correct! Great clinical reasoning.";
+            score++;
+            categoryStats[q.category].correct++;
+        } else {
+            selectedBtn.classList.add("incorrect");
+            feedback.style.color = "var(--error)";
+            feedback.textContent = "Incorrect. Review the highlighted correct choice above.";
+        }
+
+        document.getElementById("next-btn").style.display = "block";
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        loadQuestion();
+    }
+
+    function showResults() {
+        showScreen("results-screen");
+        const statsBox = document.getElementById("results-stats");
+        let html = `<h3>Total Score: ${score} / ${currentQuestions.length}</h3>`;
+        
+        for (let cat in categoryStats) {
+            let stat = categoryStats[cat];
+            let percent = Math.round((stat.correct / stat.total) * 100);
+            html += `<p><strong>${cat}:</strong> ${stat.correct}/${stat.total} (${percent}%)</p>`;
+        }
+        
+        statsBox.innerHTML = html;
+    }
+</script>
+
+</body>
+</html>
