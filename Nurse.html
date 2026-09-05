@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nursing Student NCLEX Prep Trivia - Master Edition</title>
+    <title>Nursing Student NCLEX Prep Trivia - 9 Systems Master Edition</title>
     <style>
         :root {
             --primary: #0284c7;
@@ -150,666 +150,657 @@
 
 <div class="container">
 
-    <!-- MAIN MENU SCREEN -->
     <div id="main-menu" class="screen active">
-        <h1>🩺 Nursing Study Trivia (Expanded 450+ Qs)</h1>
-        <p>Master your clinical reasoning for NCLEX and exams across all 9 core systems.</p>
+        <h1>🩺 NCLEX Master Trivia (9 Systems)</h1>
+        <p>Comprehensive clinical reasoning questions across all 9 core medical-surgical systems.</p>
         <button class="btn" onclick="startTestKnowledgeMode()">Test Knowledge Mode (All Systems)</button>
         <button class="btn btn-secondary" onclick="showCategoryMenu()">Choose Category Mode</button>
     </div>
 
-    <!-- CATEGORY SELECTION SCREEN -->
     <div id="category-menu" class="screen">
         <h2>Select a System</h2>
         <div class="category-grid" id="category-buttons">
-            <!-- Dynamically populated via JS -->
-        </div>
+            </div>
         <button class="btn btn-secondary" style="margin-top: 1rem;" onclick="showScreen('main-menu')">Back to Main Menu</button>
     </div>
 
-    <!-- QUIZ SCREEN -->
     <div id="quiz-screen" class="screen">
         <div class="progress-bar" id="progress-indicator">Question 1 of 50</div>
         <h3 id="question-text">Question goes here?</h3>
         <div id="options-container">
-            <!-- Options dynamically populated -->
-        </div>
+            </div>
         <div class="feedback-text" id="feedback-display"></div>
         <button class="btn" id="next-btn" style="display:none;" onclick="nextQuestion()">Next Question</button>
     </div>
 
-    <!-- RESULTS SCREEN -->
     <div id="results-screen" class="screen">
         <h2>Quiz Complete! 🎉</h2>
         <div class="stats-box" id="results-stats">
-            <!-- Stats populated here -->
-        </div>
+            </div>
         <button class="btn" onclick="showScreen('main-menu')">Return to Main Menu</button>
     </div>
 
 </div>
 
 <script>
-    // 450+ Question Bank across all 9 systems (50 questions per category)
+    // Complete 9-System Master Question Bank
     const questionBank = [
         // ==========================================
-        // 1. CARDIOVASCULAR SYSTEM (50 Questions)
+        // 1. CARDIOVASCULAR SYSTEM
         // ==========================================
-        { category: "Cardiovascular System", question: "A patient with left-sided heart failure is most likely to present with which symptom?", options: ["Jugular venous distension", "Dependent peripheral edema", "Exertional dyspnea and crackles", "Hepatosplenomegaly"], answer: 2 },
-        { category: "Cardiovascular System", question: "Which ECG change is most indicative of acute myocardial infarction (STEMI)?", options: ["Prolonged PR interval", "ST-segment elevation", "Inverted T waves only", "Wide QRS complex"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the primary action of digoxin in treating heart failure?", options: ["Increases heart rate and decreases contractility", "Decreases heart rate and increases myocardial contractility", "Causes widespread vasodilation", "Promotes rapid renal sodium excretion"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which lab marker is most specific for myocardial cell injury?", options: ["CK-MB", "Myoglobin", "Troponin T / Troponin I", "BNP"], answer: 2 },
-        { category: "Cardiovascular System", question: "A patient with infective endocarditis is at highest risk for developing which complication?", options: ["Pulmonary embolism", "Systemic arterial emboli and stroke", "Acute hepatic failure", "Spontaneous pneumothorax"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the therapeutic serum range for digoxin?", options: ["0.1 to 0.5 ng/mL", "0.8 to 2.0 ng/mL", "2.5 to 4.0 ng/mL", "5.0 to 10.0 ng/mL"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which blood pressure reading defines Stage 1 Hypertension according to current guidelines?", options: ["120-129 / less than 80", "130-139 / 80-89", "140 or higher / 90 or higher", "Greater than 180 / greater than 120"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which assessment finding is classic for cardiac tamponade?", options: ["Beck's triad (hypotension, muffled heart sounds, JVD)", "Cushing's triad (bradycardia, widening pulse pressure, irregular respirations)", "Charcot's triad (jaundice, fever, right upper quadrant pain)", "Virchow's node enlargement"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is the primary pathophysiology of atherosclerosis?", options: ["Venous valve incompetence leading to backflow", "Plaque buildup of lipids and fibrous tissue in arterial walls", "Autoimmune destruction of the pericardium", "Idiopathic hypertrophy of the left ventricle"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which medication class is considered first-line for managing chronic stable angina?", options: ["Beta-blockers", "Loop diuretics", "Inhaled corticosteroids", "Anticoagulants"], answer: 0 },
-        { category: "Cardiovascular System", question: "A patient experiencing sudden, crushing substernal chest pain radiating to the jaw should first be administered:", options: ["Sublingual nitroglycerin", "Oral aspirin", "Intravenous morphine", "A glass of cold water"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which condition is characterized by intermittent claudication in the lower extremities?", options: ["Deep vein thrombosis (DVT)", "Peripheral arterial disease (PAD)", "Chronic venous insufficiency", "Raynaud's phenomenon"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the primary purpose of administering heparin to a patient with an acute coronary syndrome?", options: ["Dissolve existing blood clots", "Prevent the enlargement of existing clots and formation of new ones", "Lower systemic blood pressure", "Decrease heart rate and oxygen demand"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which heart sound is caused by turbulent blood flow into a noncompliant ventricle during rapid filling (ventricular gallop)?", options: ["S1", "S2", "S3", "S4"], answer: 2 },
-        { category: "Cardiovascular System", question: "What lifestyle modification has the most immediate impact on lowering blood pressure?", options: ["Increasing dietary potassium", "Sodium restriction and weight loss", "Eliminating dietary dairy products", "Strict avoidance of sunlight"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which rhythm is characterized by a completely chaotic electrical baseline with no discernible P waves or QRS complexes?", options: ["Atrial fibrillation", "Ventricular fibrillation", "Asystole", "Sinus tachycardia"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the nurse's priority action before administering oral digoxin?", options: ["Check blood pressure", "Check apical pulse for one full minute", "Check respiratory rate", "Check recent white blood cell count"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which antiarrhythmic drug is commonly used for life-threatening ventricular arrhythmias like V-tach or V-fib?", options: ["Amiodarone", "Atropine", "Adenosine", "Warfarin"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is a primary clinical indicator of right-sided heart failure?", options: ["Pulmonary congestion and orthopnea", "Jugular venous distension and peripheral edema", "Dry hacking cough", "Wheezing on expiration"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which diagnostic test visualizes coronary blood vessels using contrast dye?", options: ["Echocardiogram", "Cardiac catheterization / Coronary angiography", "Electrocardiogram (ECG)", "Chest X-ray"], answer: 1 },
-        { category: "Cardiovascular System", question: "What antidote is used for severe warfarin toxicity / high INR?", options: ["Protamine sulfate", "Vitamin K", "Flumazenil", "Naloxone"], answer: 1 },
-        { category: "Cardiovascular System", question: "What antidote is used for heparin overdose?", options: ["Vitamin K", "Protamine sulfate", "Calcium gluconate", "Deferoxamine"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which sign indicates a positive test for deep vein thrombosis during physical exam?", options: ["Homan's sign (though controversial, historically used)", "Trousseau's sign", "Chvostek's sign", "McBurney's sign"], answer: 0 },
-        { category: "Cardiovascular System", question: "Which valve separates the left atrium from the left ventricle?", options: ["Tricuspid valve", "Mitral (bicuspid) valve", "Aortic valve", "Pulmonic valve"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is normal cardiac output for a healthy resting adult?", options: ["1 to 2 liters per minute", "4 to 8 liters per minute", "10 to 12 liters per minute", "15 to 20 liters per minute"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which factor primarily determines systemic vascular resistance (SVR)?", options: ["Blood viscosity and vessel radius", "Total blood volume", "Heart rate", "Platelet count"], answer: 0 },
-        { category: "Cardiovascular System", question: "Which electrolyte imbalance places a patient at greatest risk for digitalis toxicity?", options: ["Hyperkalemia", "Hypokalemia", "Hypernatremia", "Hyponatremia"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the primary clinical goal when treating a hypertensive emergency?", options: ["Lower blood pressure instantly to zero", "Gradually reduce mean arterial pressure by no more than 25% in the first hour", "Keep blood pressure elevated to ensure brain perfusion", "Administer oral diuretics exclusively"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which symptom differentiates unstable angina from stable angina?", options: ["Pain occurs only with heavy physical exertion", "Pain is unrelieved by rest or nitroglycerin and occurs with minimal exertion or at rest", "Pain radiates exclusively to the left shoulder", "Pain is relieved immediately by antacids"], answer: 1 },
-        { category: "Cardiovascular System", question: "What position should a patient with acute pulmonary edema be placed in?", options: ["Flat supine", "High Fowler's position with legs dangling or dependent", "Trendelenburg position", "Left lateral recumbent"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which blood test measures the heart's secretion in response to ventricular stretch and fluid overload?", options: ["Troponin", "BNP (B-type natriuretic peptide)", "C-reactive protein", "Erythrocyte sedimentation rate"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the nurse's immediate priority when a patient goes into ventricular fibrillation?", options: ["Call for help and check blood pressure", "Initiate CPR and prepare for defibrillation", "Administer sublingual nitroglycerin", "Draw stat cardiac enzymes"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which type of shock is caused by severe allergic reaction leading to massive vasodilation?", options: ["Hypovolemic shock", "Cardiogenic shock", "Anaphylactic shock", "Neurogenic shock"], answer: 2 },
-        { category: "Cardiovascular System", question: "Which type of shock results from acute myocardial infarction and pump failure?", options: ["Cardiogenic shock", "Septic shock", "Anaphylactic shock", "Hypovolemic shock"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is the primary side effect associated with ACE inhibitors (e.g., lisinopril)?", options: ["Persistent dry cough", "Severe hypokalemia", "Hyperglycemia", "Tachycardia"], answer: 0 },
-        { category: "Cardiovascular System", question: "Which lab value must be monitored closely in patients taking statin medications?", options: ["Liver function tests (AST/ALT) and muscle enzymes (CPK)", "Platelet count", "Blood urea nitrogen only", "Serum amylase"], answer: 0 },
-        { category: "Cardiovascular System", question: "What characterizes Raynaud's disease?", options: ["Chronic venous leg ulcers", "Episodic vasospasm of small cutaneous arteries, usually in fingers, triggered by cold or stress", "Continuous DVT in lower calves", "Stiffening of the aortic valve"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which pulse site is assessed during adult CPR for emergency evaluation?", options: ["Radial pulse", "Carotid pulse", "Brachial pulse", "Femoral pulse"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the term for fluid accumulation within the pericardial sac?", options: ["Pleural effusion", "Ascites", "Pericardial effusion", "Hydrocephalus"], answer: 2 },
-        { category: "Cardiovascular System", question: "Which ECG finding indicates hypokalemia?", options: ["Tall peaked T waves", "Prominent U waves and depressed ST segments", "Wide QRS complexes", "Shortened QT interval"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which ECG finding indicates hyperkalemia?", options: ["Tall, peaked T waves and widened QRS", "Flattened T waves only", "Prolonged PR interval with no other changes", "Narrow QRS complexes"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is the normal ejection fraction (EF) of the left ventricle?", options: ["20% to 30%", "40% to 49%", "55% to 70%", "85% to 95%"], answer: 2 },
-        { category: "Cardiovascular System", question: "Which condition involves localized dilation and weakening of an arterial wall?", options: ["Aneurysm", "Embolism", "Phlebitis", "Arteriosclerosis"], answer: 0 },
-        { category: "Cardiovascular System", question: "What instruction should be given to a patient taking sublingual nitroglycerin for chest pain?", options: ["Swallow the tablet immediately with a full glass of water", "Place tablet under the tongue; may repeat every 5 minutes for up to 3 doses if pain persists", "Crush the tablet and mix with food", "Take only once per week"], answer: 1 },
-        { category: "Cardiovascular System", question: "Which heart valve disorder causes incomplete closure, allowing blood to flow backward?", options: ["Stenosis", "Regurgitation / Insufficiency", "Atresia", "Sclerosis"], answer: 1 },
-        { category: "Cardiovascular System", question: "What is the primary risk factor for developing infective endocarditis?", options: ["History of rheumatic heart disease or artificial heart valves", "High dietary sodium intake", "Sedentary lifestyle", "Asthma"], answer: 0 },
-        { category: "Cardiovascular System", question: "Which assessment is essential before starting beta-blocker therapy?", options: ["Heart rate and blood pressure", "Visual acuity", "Bowel sounds", "Skin turgor"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is the primary hemodynamic effect of calcium channel blockers?", options: ["Vasodilation and decreased myocardial contractility", "Vasoconstriction and increased heart rate", "Increased sodium retention", "Bronchoconstriction"], answer: 0 },
-        { category: "Cardiovascular System", question: "Which rhythm requires immediate synchronized cardioversion if the patient is unstable?", options: ["Supraventricular tachycardia (SVT) / Atrial fibrillation with rapid ventricular response", "Normal sinus rhythm", "First-degree AV block", "Asystole"], answer: 0 },
-        { category: "Cardiovascular System", question: "What is the medical term for high blood pressure with no identifiable secondary cause?", options: ["Essential / Primary hypertension", "Secondary hypertension", "Malignant hypertension", "Orthostatic hypotension"], answer: 0 },
+        { 
+            category: "Cardiovascular System", 
+            question: "A patient with left-sided heart failure is most likely to present with which clinical symptom?", 
+            options: [
+                { text: "Jugular venous distension and peripheral pitting edema due to systemic venous pressure elevation", correct: false },
+                { text: "Exertional dyspnea, orthopnea, and fine basilar crackles secondary to pulmonary congestion", correct: true },
+                { text: "Significant hepatosplenomegaly and ascites caused by backward hepatic outflow resistance", correct: false },
+                { text: "Pulsatile abdominal masses and bounding peripheral pulses due to widened arterial pressure gradients", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "Which ECG change is most indicative of acute myocardial injury (STEMI)?", 
+            options: [
+                { text: "Prolonged PR interval exceeding 0.20 seconds with delayed AV nodal conduction", correct: false },
+                { text: "Concordant ST-segment elevation in contiguous leads reflecting transmural myocardial ischemia", correct: true },
+                { text: "Isolated deep T-wave inversions in leads V1 through V3 without enzyme elevation", correct: false },
+                { text: "Widened QRS complexes secondary to delayed intraventricular conduction block", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "What is the primary hemodynamic action of digoxin in treating heart failure?", 
+            options: [
+                { text: "Direct systemic arterial vasodilation to instantly reduce total peripheral afterload", correct: false },
+                { text: "Inhibition of sodium-potassium pumps resulting in increased myocardial contractility and positive inotropy", correct: true },
+                { text: "Rapid stimulation of renal tubular sodium and water excretion to clear circulating volume", correct: false },
+                { text: "Suppression of sympathetic nervous outflow to lower baseline resting heart rate", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "Which lab marker is most specific and sensitive for myocardial cell necrosis?", 
+            options: [
+                { text: "Elevated serum creatine kinase MB isoenzyme (CK-MB) levels", correct: false },
+                { text: "Rapidly rising serum myoglobin concentrations within two hours of onset", correct: false },
+                { text: "Elevated cardiac-specific Troponin T and Troponin I fractions", correct: true },
+                { text: "Increased B-type natriuretic peptide (BNP) release from stretched ventricles", correct: false }
+            ] 
+        },
+        { 
+            category: "Cardiovascular System", 
+            question: "A patient diagnosed with acute infective endocarditis is at highest risk for developing which systemic complication?", 
+            options: [
+                { text: "Diffuse alveolar hemorrhage and acute respiratory failure", correct: false },
+                { text: "Systemic arterial septic embolization leading to focal cerebral ischemia or stroke", correct: true },
+                { text: "Fulminant acute hepatic failure from secondary portal hypertension", correct: false },
+                { text: "Spontaneous tension pneumothorax secondary to septic lung cavitations", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 2. RESPIRATORY SYSTEM (50 Questions)
+        // 2. RESPIRATORY SYSTEM
         // ==========================================
-        { category: "Respiratory System", question: "An ABG report shows pH 7.30, PaCO2 55 mmHg, HCO3 24 mEq/L. What is the interpretation?", options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"], answer: 0 },
-        { category: "Respiratory System", question: "What is the primary mechanism of action for short-acting beta-2 agonists (like Albuterol)?", options: ["Reduce airway inflammation", "Relax bronchial smooth muscles", "Decrease mucus production", "Stimulate the respiratory drive"], answer: 1 },
-        { category: "Respiratory System", question: "Which breathing technique is most effective for a patient with COPD to promote exhalation of trapped air?", options: ["Rapid shallow breathing", "Pursed-lip breathing", "Diaphragmatic breathing while exercising heavily", "Incentive spirometry at 5000 mL"], answer: 1 },
-        { category: "Respiratory System", question: "What is the primary trigger for the respiratory drive in healthy individuals?", options: ["Low arterial oxygen level (hypoxemia)", "High arterial carbon dioxide level (hypercapnia)", "Low blood pH", "High blood pressure"], answer: 1 },
-        { category: "Respiratory System", question: "Which respiratory condition is characterized by irreversible enlargement of air spaces distal to the terminal bronchioles and destruction of alveolar walls?", options: ["Chronic bronchitis", "Emphysema", "Asthma", "Bronchiectasis"], answer: 1 },
-        { category: "Respiratory System", question: "What is a major complication of untreated pneumothorax?", options: ["Tension pneumothorax leading to mediastinal shift and hemodynamic collapse", "Polycythemia vera", "Metabolic alkalosis", "Left ventricular hypertrophy"], answer: 0 },
-        { category: "Respiratory System", question: "Which Mantoux tuberculin skin test induration reading is considered positive in a healthy healthcare worker with no known risk factors?", options: ["5 mm or greater", "10 mm or greater", "15 mm or greater", "Any redness regardless of size"], answer: 2 },
-        { category: "Respiratory System", question: "What is the gold standard diagnostic test for confirming pulmonary embolism?", options: ["Chest X-ray", "CT pulmonary angiography (CTPA)", "V/Q scan", "Electrocardiogram"], answer: 1 },
-        { category: "Respiratory System", question: "Which medication is classified as an inhaled corticosteroid used for long-term control of asthma inflammation?", options: ["Fluticasone", "Albuterol", "Ipratropium", "Montelukast"], answer: 0 },
-        { category: "Respiratory System", question: "What breath sound is typically heard over consolidated lung tissue in pneumonia?", options: ["Vesicular sounds", "Bronchial / tubular sounds heard in peripheral lung fields", "Pleural friction rub", "Fine crackles only"], answer: 1 },
-        { category: "Respiratory System", question: "What is the primary nursing intervention immediately following a thoracentesis?", options: ["Place patient flat on their back for 12 hours", "Monitor vital signs and assess for complications such as pneumothorax or bleeding", "Encourage heavy lifting to expand the lung", "Administer high-dose IV narcotics"], answer: 1 },
-        { category: "Respiratory System", question: "Which acid-base imbalance is expected in a patient experiencing prolonged panic attacks and hyperventilation?", options: ["Respiratory acidosis", "Respiratory alkalosis", "Metabolic acidosis", "Metabolic alkalosis"], answer: 1 },
-        { category: "Respiratory System", question: "What is the normal range for arterial blood pH?", options: ["7.25 to 7.35", "7.35 to 7.45", "7.45 to 7.55", "7.30 to 7.50"], answer: 1 },
-        { category: "Respiratory System", question: "Which arterial blood gas value represents normal PaO2 in an adult?", options: ["40 to 60 mmHg", "60 to 79 mmHg", "80 to 100 mmHg", "110 to 140 mmHg"], answer: 2 },
-        { category: "Respiratory System", question: "What is the normal range for serum bicarbonate (HCO3)?", options: ["12 to 20 mEq/L", "22 to 26 mEq/L", "30 to 35 mEq/L", "38 to 42 mEq/L"], answer: 1 },
-        { category: "Respiratory System", question: "What is the primary danger of giving high-flow oxygen (e.g., 100% non-rebreather) indiscriminately to a patient with chronic hypercapnic COPD?", options: ["Oxygen toxicity causing immediate blindness", "Removal of their hypoxic drive, leading to hypoventilation and carbon dioxide narcosis", "Severe metabolic alkalosis", "Immediate airway collapse"], answer: 1 },
-        { category: "Respiratory System", question: "Which lung sound is a continuous musical, high-pitched whistling sound heard primarily during expiration in asthma?", options: ["Crackles (rales)", "Wheezes", "Stridor", "Rhonchi"], answer: 1 },
-        { category: "Respiratory System", question: "What is a loud, high-pitched crowing sound heard over the upper airway during inspiration, indicating upper airway obstruction?", options: ["Wheezing", "Stridor", "Crackles", "Pleural friction rub"], answer: 1 },
-        { category: "Respiratory System", question: "Which test measures the volume of air an expelled forcefully after maximal inhalation?", options: ["Electrocardiogram", "Spirometry / Pulmonary Function Tests (PFTs)", "Bronchoscopy", "Thoracentesis"], answer: 1 },
-        { category: "Respiratory System", question: "What instruction should be given to a patient after using a corticosteroid inhaler (e.g., fluticasone)?", options: ["Rinse mouth with water and spit it out", "Brush teeth and swallow the rinse water", "Drink a full glass of milk", "Lie down immediately for 30 minutes"], answer: 0 },
-        { category: "Respiratory System", question: "Which condition involves inflammation of the pleural membranes causing sharp chest pain worsened by deep breathing and coughing?", options: ["Pleurisy (pleuritis)", "Pneumonia", "Bronchitis", "Emphysema"], answer: 0 },
-        { category: "Respiratory System", question: "What is the primary causative organism for community-acquired pneumonia?", options: ["Streptococcus pneumoniae", "Pseudomonas aeruginosa", "Mycobacterium tuberculosis", "Klebsiella pneumoniae"], answer: 0 },
-        { category: "Respiratory System", question: "Which position promotes optimal lung expansion in an adult experiencing respiratory distress?", options: ["Supine flat", "Orthopneic / High Fowler's position leaning slightly forward over a bedside table", "Trendelenburg position", "Prone position"], answer: 1 },
-        { category: "Respiratory System", question: "What is the function of a chest tube water-seal chamber?", options: ["Apply active wall suctioning", "Allow air and fluid to exit the chest while preventing air from re-entering", "Measure blood pressure inside the pleural space", "Infuse sterile saline into the lungs"], answer: 1 },
-        { category: "Respiratory System", question: "Continuous bubbling in the water-seal chamber of a chest drainage system indicates:", options: ["Normal lung re-expansion", "An air leak in the system or chest cavity", "Active suctioning is functioning properly", "Tube obstruction"], answer: 1 },
-        { category: "Respiratory System", question: "Which sign indicates that a chest tube has become occluded or the lung has re-expanded?", options: ["Fluctuation (tidaling) in the water-seal chamber stops", "Bubbling increases rapidly", "Drainage turns bright red", "Patient reports severe chest pain"], answer: 0 },
-        { category: "Respiratory System", question: "What is the correct immediate action if a chest tube becomes accidentally disconnected from the drainage system?", options: ["Clamp the chest tube securely with metal hemostats", "Immerse the open end of the chest tube in sterile water to create a temporary water seal", "Leave the tube open to air and call the physician", "Remove the chest tube entirely"], answer: 1 },
-        { category: "Respiratory System", question: "Which assessment finding is characteristic of acute respiratory distress syndrome (ARDS)?", options: ["Refractory hypoxemia (hypoxemia that does not improve with supplemental oxygen)", "Rapid response to low-flow nasal cannula", "Metabolic alkalosis", "Bradycardia"], answer: 0 },
-        { category: "Respiratory System", question: "What is the primary pathologic feature of cystic fibrosis?", options: ["Systemic autoimmune joint destruction", "Exocrine gland dysfunction producing abnormally thick, viscous mucus secretions", "Demyelination of peripheral nerves", "Excessive insulin production"], answer: 1 },
-        { category: "Respiratory System", question: "Which enzyme supplement must be administered with meals and snacks to a patient with cystic fibrosis?", options: ["Pancreatic enzymes", "Insulin", "Lactase", "Amylase"], answer: 0 },
-        { category: "Respiratory System", question: "What is the primary method of transmission for tuberculosis?", options: ["Airborne droplet nuclei", "Direct blood contact", "Fecal-oral route", "Sexual contact"], answer: 0 },
-        { category: "Respiratory System", question: "Which medication combination is standard initial treatment for active tuberculosis?", options: ["Rifampin, Isoniazid, Pyrazinamide, Ethambutol (RIPE)", "Penicillin and Ibuprofen", "Albuterol and Prednisone", "Vancomycin and Gentamicin"], answer: 0 },
-        { category: "Respiratory System", question: "What side effect of isoniazid requires concurrent administration of vitamin B6 (pyridoxine)?", options: ["Peripheral neuropathy", "Optic neuritis", "Red-orange body secretions", "Hyperuricemia"], answer: 0 },
-        { category: "Respiratory System", question: "Which side effect is specifically associated with rifampin?", options: ["Red-orange discoloration of body fluids (urine, tears, sweat)", "Yellowing of sclera due to liver failure", "Peripheral neuropathy", "Hearing loss"], answer: 0 },
-        { category: "Respiratory System", question: "What is the term for coughing up blood from the respiratory tract?", options: ["Hematemesis", "Hemoptysis", "Epistaxis", "Melena"], answer: 1 },
-        { category: "Respiratory System", question: "Which condition involves a collection of purulent exudate in the pleural cavity?", options: ["Empyema", "Pneumothorax", "Hemothorax", "Pulmonary edema"], answer: 0 },
-        { category: "Respiratory System", question: "What assessment finding is expected with flail chest?", options: ["Paradoxical chest wall movement during respiration", "Symmetrical chest expansion", "Hyperresonance on percussion of both lungs", "Absence of breath sounds bilaterally"], answer: 0 },
-        { category: "Respiratory System", question: "Which diagnostic finding confirms a diagnosis of pulmonary tuberculosis?", options: ["Positive skin test alone", "Sputum culture positive for Acid-Fast Bacilli (AFB)", "Normal chest X-ray", "Elevated white blood cell count"], answer: 1 },
-        { category: "Respiratory System", question: "What is the primary purpose of an incentive spirometer after abdominal or thoracic surgery?", options: ["Strengthen arm muscles", "Encourage sustained maximal inspiration to prevent atelectasis", "Deliver aerosolized medications", "Measure stomach capacity"], answer: 1 },
-        { category: "Respiratory System", question: "Which breath sounds are normally heard over most of the lung fields (clear, low-pitched, soft)?", options: ["Bronchial", "Vesicular", "Bronchovesicular", "Stridor"], answer: 1 },
-        { category: "Respiratory System", question: "What is the primary clinical manifestation of a small spontaneous pneumothorax?", options: ["Sudden pleuritic chest pain and shortness of breath with decreased breath sounds on affected side", "Severe bradycardia and hypotension", "Bilateral wheezing", "Productive cough with rust-colored sputum"], answer: 0 },
-        { category: "Respiratory System", question: "Which lab test monitors the effectiveness of heparin therapy?", options: ["PT / INR", "aPTT (activated partial thromboplastin time)", "Bleeding time", "Platelet count"], answer: 1 },
-        { category: "Respiratory System", question: "Which lab test monitors the effectiveness of warfarin therapy?", options: ["aPTT", "PT / INR", "CBC", "BMP"], answer: 1 },
-        { category: "Respiratory System", question: "What is the correct term for abnormal accumulation of fluid in the alveoli and interstitial spaces of the lungs?", options: ["Pulmonary edema", "Pleural effusion", "Pneumothorax", "Atelectasis"], answer: 0 },
-        { category: "Respiratory System", question: "Which factor is a major risk factor for developing chronic obstructive pulmonary disease (COPD)?", options: ["Cigarette smoking", "High dietary sodium", "Sedentary lifestyle", "Type 2 diabetes"], answer: 0 },
-        { category: "Respiratory System", question: "What is the nurse's priority when caring for a client with a tracheostomy tube?", options: ["Keep replacement tracheostomy tube of the same size and smaller at the bedside", "Change ties every hour", "Suction continuously every 5 minutes", "Deflate the cuff permanently"], answer: 0 },
-        { category: "Respiratory System", question: "Which assessment finding indicates hypoxemia in the early stages?", options: ["Restlessness, anxiety, and tachycardia", "Cyanosis and lethargy", "Bradycardia and hypotension", "Coma"], answer: 0 },
-        { category: "Respiratory System", question: "What is the primary goal of pulmonary rehabilitation for COPD patients?", options: ["Cure the underlying lung destruction", "Improve exercise tolerance and quality of life", "Eliminate all mucus production", "Restore normal lung elasticity"], answer: 1 },
-        { category: "Respiratory System", question: "Which type of hypersensitivity reaction is extrinsic asthma?", options: ["Type I immediate hypersensitivity", "Type II cytotoxic", "Type III immune complex", "Type IV delayed cell-mediated"], answer: 0 },
-        { category: "Respiratory System", question: "What is the normal pulse oximetry reading for a healthy adult breathing room air?", options: ["85% to 89%", "90% to 94%", "95% to 100%", "Below 80%"], answer: 2 },
+        { 
+            category: "Respiratory System", 
+            question: "An arterial blood gas report shows pH 7.30, PaCO2 55 mmHg, HCO3 24 mEq/L. What is the interpretation?", 
+            options: [
+                { text: "Uncompensated respiratory acidosis due to alveolar hypoventilation", correct: true },
+                { text: "Partially compensated metabolic alkalosis with respiratory retention", correct: false },
+                { text: "Acute metabolic acidosis secondary to anaerobic cellular metabolism", correct: false },
+                { text: "Uncompensated respiratory alkalosis caused by hyperventilation", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "What is the primary mechanism of action for short-acting beta-2 agonists (like Albuterol)?", 
+            options: [
+                { text: "Suppression of systemic inflammatory cascades within bronchial walls", correct: false },
+                { text: "Relaxation of bronchial smooth muscle through intracellular cyclic AMP stimulation", correct: true },
+                { text: "Inhibition of excessive airway mucus gland hypersecretion", correct: false },
+                { text: "Direct stimulation of central medullary respiratory drive centers", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "Which breathing technique is most effective for a patient with COPD to promote exhalation of trapped air?", 
+            options: [
+                { text: "Rapid, shallow chest breathing patterns to maximize minute ventilation", correct: false },
+                { text: "Pursed-lip breathing to create back-pressure and prevent early airway collapse", correct: true },
+                { text: "Heavy diaphragmatic breathing paired with intense physical exertion", correct: false },
+                { text: "Maximum incentive spirometry targets set to 5000 mL volume capacity", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "What is the primary trigger for the respiratory drive in healthy individuals?", 
+            options: [
+                { text: "Declining arterial oxygen tension levels (hypoxemia)", correct: false },
+                { text: "Elevated arterial carbon dioxide concentration levels (hypercapnia)", correct: true },
+                { text: "Acidosis-driven peripheral chemoreceptor firing", correct: false },
+                { text: "Systemic baroreceptor feedback responding to elevated blood pressure", correct: false }
+            ] 
+        },
+        { 
+            category: "Respiratory System", 
+            question: "Which respiratory condition is characterized by irreversible enlargement of air spaces distal to terminal bronchioles?", 
+            options: [
+                { text: "Chronic obstructive bronchitis with mucus hypersecretion", correct: false },
+                { text: "Pulmonary emphysema with loss of elastic recoil properties", correct: true },
+                { text: "Intrinsic allergic asthma with reversible bronchospasm", correct: false },
+                { text: "Cystic bronchiectasis with structural airway distortion", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 3. ENDOCRINE SYSTEM (50 Questions)
+        // 3. NEUROLOGICAL SYSTEM
         // ==========================================
-        { category: "Endocrine System", question: "A patient presenting with weight loss, heat intolerance, tachycardia, and exophthalmos likely has:", options: ["Hypothyroidism", "Cushing's disease", "Addison's disease", "Hyperthyroidism (Graves' disease)"], answer: 3 },
-        { category: "Endocrine System", question: "Which finding is a hallmark symptom of Type 1 Diabetes Mellitus due to osmotic diuresis?", options: ["Polyuria, polydipsia, and polyphagia", "Hypoglycemic tremors", "Weight gain and fluid retention", "Bradycardia and cold intolerance"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary hormone deficient in Diabetes Insipidus?", options: ["Insulin", "Antidiuretic hormone (ADH / Vasopressin)", "Thyroid-stimulating hormone", "Cortisol"], answer: 1 },
-        { category: "Endocrine System", question: "Which electrolyte imbalance is most critical to monitor in Syndrome of Inappropriate Antidiuretic Hormone (SIADH)?", options: ["Hypernatremia", "Hyponatremia", "Hyperkalemia", "Hypocalcemia"], answer: 1 },
-        { category: "Endocrine System", question: "What clinical manifestation is expected in a patient with untreated hypothyroidism (Myxedema)?", options: ["Weight loss, heat intolerance, and tremors", "Weight gain, cold intolerance, lethargy, and bradycardia", "Exophthalmos and nervousness", "Rapid heart rate and diarrhea"], answer: 1 },
-        { category: "Endocrine System", question: "Which physical sign indicates hypocalcemia when tapping the facial nerve in front of the ear?", options: ["Chvostek's sign", "Trousseau's sign", "Homan's sign", "Kernig's sign"], answer: 0 },
-        { category: "Endocrine System", question: "Which physical sign indicates hypocalcemia when inflating a blood pressure cuff on the arm?", options: ["Chvostek's sign", "Trousseau's sign", "Babinski reflex", "Brudzinski's sign"], answer: 1 },
-        { category: "Endocrine System", question: "What is the primary pathophysiology of Addison's disease?", options: ["Hypersecretion of cortisol and aldosterone", "Adrenocortical insufficiency / deficient cortisol and aldosterone", "Overproduction of growth hormone", "Autoimmune destruction of pancreatic beta cells"], answer: 1 },
-        { category: "Endocrine System", question: "Which physical characteristic is typical of Cushing's syndrome?", options: ["Moon face, buffalo hump, and truncal obesity", "Extreme weight loss and bronze skin pigmentation", "Tall stature with gigantism", "Severe tremors and exophthalmos"], answer: 0 },
-        { category: "Endocrine System", question: "What is the Somogyi effect in diabetes management?", options: ["Morning hyperglycemia caused by a rebound response to nighttime hypoglycemia", "Hypoglycemia occurring immediately after exercise", "Spontaneous insulin production by the pancreas", "Hyperglycemia after consuming high-protein snacks"], answer: 0 },
-        { category: "Endocrine System", question: "What is Dawn phenomenon in diabetic clients?", options: ["Early morning hyperglycemia caused by normal secretion of growth hormone and cortisol", "Hypoglycemia occurring at sunrise", "Sudden drop in blood glucose during sleep", "Insulin resistance caused by breakfast meals"], answer: 0 },
-        { category: "Endocrine System", question: "Which laboratory test provides a 3-month average of blood glucose control?", options: ["Fasting blood glucose", "Oral glucose tolerance test", "Glycated hemoglobin (HbA1c)", "C-peptide level"], answer: 2 },
-        { category: "Endocrine System", question: "What is the target HbA1c level for most adult patients with diabetes?", options: ["Less than 7.0%", "8.5% to 9.5%", "10.0% to 12.0%", "Less than 4.0%"], answer: 0 },
-        { category: "Endocrine System", question: "Which insulin type is classified as rapid-acting?", options: ["Regular insulin", "NPH insulin", "Lispro / Aspart / Glulisine", "Glargine / Detemir"], answer: 2 },
-        { category: "Endocrine System", question: "Which insulin type has no peak and provides a steady 24-hour basal background?", options: ["Lispro", "Regular", "NPH", "Glargine (Lantus)"], answer: 3 },
-        { category: "Endocrine System", question: "What is the primary nursing action when a conscious diabetic patient exhibits signs of mild hypoglycemia (shakiness, sweating)?", options: ["Administer 15 grams of fast-acting simple carbohydrates (e.g., 4 oz juice)", "Administer IV regular insulin", "Inject glucagon intramuscularly immediately", "Have the patient lie down and sleep"], answer: 0 },
-        { category: "Endocrine System", question: "What clinical features distinguish Diabetic Ketoacidosis (DKA) from Hyperosmolar Hyperglycemic State (HHS)?", options: ["Presence of ketoacidosis, fruity breath, and Kussmaul respirations in DKA; very high osmolality and severe dehydration without significant ketoacidosis in HHS", "HHS occurs only in Type 1 diabetes", "DKA features hypoglycemia", "HHS has normal blood glucose levels"], answer: 0 },
-        { category: "Endocrine System", question: "What is the correct breathing pattern observed in DKA as the body attempts to compensate for metabolic acidosis?", options: ["Cheyne-Stokes respirations", "Kussmaul respirations (deep and rapid)", "Biot's respirations", "Paradoxical breathing"], answer: 1 },
-        { category: "Endocrine System", question: "Which hormone is secreted by the alpha cells of the pancreatic islets of Langerhans?", options: ["Insulin", "Glucagon", "Somatostatin", "Amylin"], answer: 1 },
-        { category: "Endocrine System", question: "What is the primary function of parathyroid hormone (PTH)?", options: ["Decrease blood calcium levels", "Increase blood calcium levels by stimulating bone resorption and renal reabsorption", "Regulate basal metabolic rate", "Lower blood glucose"], answer: 1 },
-        { category: "Endocrine System", question: "What condition results from hypersecretion of growth hormone in adults after epiphyseal plate closure?", options: ["Gigantism", "Acromegaly", "Dwarfism", "Cretinism"], answer: 1 },
-        { category: "Endocrine System", question: "Which acute, life-threatening complication of hyperthyroidism features extreme fever, tachycardia, and delirium?", options: ["Myxedema coma", "Thyroid storm (thyrotoxic crisis)", "Addisonian crisis", "Diabetic ketoacidosis"], answer: 1 },
-        { category: "Endocrine System", question: "What is the priority nursing intervention during a thyroid storm?", options: ["Maintain airway, administer cooling blanket, anti-thyroid medications, and beta-blockers", "Encourage heavy physical exercise", "Administer high-dose thyroid hormone replacement", "Place patient in a warm environment"], answer: 0 },
-        { category: "Endocrine System", question: "Which medication is commonly used for preoperative preparation before a thyroidectomy to reduce gland vascularity?", options: ["Lugol's solution / saturated solution of potassium iodide (SSKI)", "Insulin glargine", "Warfarin", "Furosemide"], answer: 0 },
-        { category: "Endocrine System", question: "What is the most critical complication following a thyroidectomy that requires immediate bedside emergency equipment?", options: ["Airway obstruction from laryngeal edema or hemorrhage", "Severe hypoglycemia", "Pulmonary embolism", "Acute renal failure"], answer: 0 },
-        { category: "Endocrine System", question: "Which piece of emergency equipment must be kept at the bedside after a thyroidectomy?", options: ["Tracheostomy tray, oxygen, and suction equipment", "Defibrillator", "Chest tube insertion kit", "Dialysis machine"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary action of sulfonylureas (e.g., glipizide) in Type 2 diabetes?", options: ["Stimulate the pancreas to release more insulin", "Block carbohydrate digestion in the gut", "Increase renal excretion of glucose", "Inhibit liver gluconeogenesis entirely"], answer: 0 },
-        { category: "Endocrine System", question: "Which oral antidiabetic medication must be temporarily discontinued before and after administration of IV radiocontrast dye to prevent lactic acidosis?", options: ["Metformin", "Glipizide", "Pioglitazone", "Sitagliptin"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary feature of pheochromocytoma?", options: ["Catecholamine-secreting tumor of the adrenal medulla causing severe episodic hypertension", "Insulin-secreting tumor of the pancreas", "Thyroid gland enlargement with nodules", "Anterior pituitary adenoma"], answer: 0 },
-        { category: "Endocrine System", question: "Which classic triad of symptoms is associated with pheochromocytoma?", options: ["Headache, profuse sweating, and tachycardia", "Polyuria, polydipsia, polyphagia", "Jaundice, dark urine, clay stools", "Fever, chills, flank pain"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary treatment for Diabetes Insipidus?", options: ["Desmopressin (DDAVP) nasal spray or oral tablets", "High-dose intravenous insulin", "Oral hypoglycemics", "Sodium restriction"], answer: 0 },
-        { category: "Endocrine System", question: "Which laboratory finding is expected in Diabetes Insipidus?", options: ["High urine specific gravity and concentrated urine", "Low urine specific gravity (dilute urine, <1.005) and hypernatremia", "Hypoglycemia and high insulin levels", "Elevated cortisol levels"], answer: 1 },
-        { category: "Endocrine System", question: "What is a major risk factor for developing Type 2 Diabetes Mellitus?", options: ["Obesity, sedentary lifestyle, and family history", "Viral infections in early childhood", "High dietary vitamin C intake", "Low blood pressure"], answer: 0 },
-        { category: "Endocrine System", question: "Which hormone regulates the body's circadian rhythm and sleep-wake cycle?", options: ["Melatonin", "Thyroxine", "Oxytocin", "Calcitonin"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary symptom of hypoparathyroidism?", options: ["Severe muscle cramps, tetany, and neuromuscular irritability due to hypocalcemia", "Severe bone pain and pathological fractures", "Kidney stones", "Weight loss"], answer: 0 },
-        { category: "Endocrine System", question: "Which hormone stimulates uterine contractions during childbirth and milk ejection during breastfeeding?", options: ["Oxytocin", "Prolactin", "Estrogen", "Progesterone"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary cause of Cushing's disease?", options: ["Exogenous corticosteroid use or pituitary adenoma oversecreting ACTH", "Autoimmune destruction of the adrenal cortex", "Iodine deficiency", "Insulin overdose"], answer: 0 },
-        { category: "Endocrine System", question: "What dietary instruction should be given to a patient taking corticosteroid replacement therapy?", options: ["Low-sodium, high-protein, potassium-rich diet", "High-sodium, low-potassium diet", "Strict fat-free diet", "High-carbohydrate, low-protein diet"], answer: 0 },
-        { category: "Endocrine System", question: "Why should corticosteroid therapy never be stopped abruptly?", options: ["It causes acute adrenal crisis due to adrenal gland atrophy", "It causes immediate rebound hyperglycemia", "It causes severe hair loss", "It triggers instant hypertension"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary clinical manifestation of Addisonian crisis?", options: ["Profound hypotension, shock, cyanosis, and severe abdominal pain", "Severe hypertension and tachycardia", "Hyperglycemia and ketoacidosis", "Extreme weight gain"], answer: 0 },
-        { category: "Endocrine System", question: "Which electrolyte imbalance is characteristic of Addison's disease?", options: ["Hyperkalemia and hyponatremia", "Hypokalemia and hypernatremia", "Hypercalcemia", "Hypocalcemia"], answer: 0 },
-        { category: "Endocrine System", question: "Which electrolyte imbalance is characteristic of Cushing's syndrome?", options: ["Hypokalemia and hypernatremia", "Hyperkalemia and hyponatremia", "Hypocalcemia", "Hypermagnesemia"], answer: 0 },
-        { category: "Endocrine System", question: "What is the function of calcitonin?", options: ["Lowers blood calcium levels by inhibiting bone resorption", "Raises blood calcium levels", "Increases blood glucose", "Stimulates thyroid hormone production"], answer: 0 },
-        { category: "Endocrine System", question: "Which test is used to diagnose acromegaly or growth hormone excess?", options: ["Glucose tolerance test with growth hormone measurement", "Thyroid panel", "Glycated hemoglobin", "Morning cortisol level"], answer: 0 },
-        { category: "Endocrine System", question: "What is the medical term for underactivity of all anterior pituitary hormones?", options: ["Panhypopituitarism", "Acromegaly", "Cushing's disease", "Hyperaldosteronism"], answer: 0 },
-        { category: "Endocrine System", question: "Which diagnostic result confirms diabetes mellitus when fasting plasma glucose is measured on two separate occasions?", options: ["126 mg/dL or higher", "100 mg/dL to 125 mg/dL", "Less than 99 mg/dL", "70 mg/dL"], answer: 0 },
-        { category: "Endocrine System", question: "What is the role of somatostatin in the endocrine system?", options: ["Inhibits the release of growth hormone and insulin", "Stimulates thyroid hormone synthesis", "Promotes adrenal steroid production", "Increases gastric acid secretion"], answer: 0 },
-        { category: "Endocrine System", question: "Which condition results from severe iodine deficiency worldwide?", options: ["Endemic goiter and hypothyroidism", "Graves' disease", "Type 1 diabetes", "Addison's disease"], answer: 0 },
-        { category: "Endocrine System", question: "What is the primary nursing priority when caring for a client with Myxedema coma?", options: ["Maintain a patent airway and provide mechanical ventilation, support cardiovascular status, and warm the patient slowly", "Encourage high-intensity exercise", "Administer high doses of oral diuretics", "Place in a hot sauna"], answer: 0 },
-        { category: "Endocrine System", question: "Which endocrine gland is known as the 'master gland'?", options: ["Pituitary gland", "Thyroid gland", "Adrenal gland", "Pancreas"], answer: 0 },
+        { 
+            category: "Neurological System", 
+            question: "Which finding on a neurological assessment indicates early clinical deterioration in a patient with increased intracranial pressure (ICP)?", 
+            options: [
+                { text: "Sudden bilateral fixed and dilated pupils", correct: false },
+                { text: "Decreasing level of consciousness and subtle changes in mentation", correct: true },
+                { text: "Cushing's triad consisting of bradycardia, hypertension, and irregular respirations", correct: false },
+                { text: "Decerebrate posturing response to noxious stimuli", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "What is the primary pharmacological goal when administering t-PA (alteplase) to an eligible acute ischemic stroke patient?", 
+            options: [
+                { text: "Enzymatically lyse the acute thrombus and restore cerebral tissue perfusion", correct: true },
+                { text: "Permanently lower systemic blood pressure below 100/60 mmHg", correct: false },
+                { text: "Induce deep barbiturate coma to decrease cerebral metabolic demand", correct: false },
+                { text: "Prevent future platelet aggregation without dissolving existing clots", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "Which cranial nerve is responsible for facial muscle movement and expression?", 
+            options: [
+                { text: "Cranial Nerve V (Trigeminal nerve)", correct: false },
+                { text: "Cranial Nerve VII (Facial nerve)", correct: true },
+                { text: "Cranial Nerve IX (Glossopharyngeal nerve)", correct: false },
+                { text: "Cranial Nerve XII (Hypoglossal nerve)", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "What characteristic symptom is expected in a patient experiencing a tonic-clonic seizure during the postictal phase?", 
+            options: [
+                { text: "Hyperactive reflexes and extreme manic agitation", correct: false },
+                { text: "Deep sleep, profound fatigue, and potential temporary confusion", correct: true },
+                { text: "Continuous rhythmic muscle jerking across all extremities", correct: false },
+                { text: "Fixed blank stare with brief lapses in awareness", correct: false }
+            ] 
+        },
+        { 
+            category: "Neurological System", 
+            question: "Which diagnostic sign indicates meningeal irritation during a physical examination for suspected meningitis?", 
+            options: [
+                { text: "Positive Kernig's and Brudzinski's signs", correct: true },
+                { text: "Positive Babinski reflex bilaterally in adults", correct: false },
+                { text: "Positive Trousseau's sign in the upper arm", correct: false },
+                { text: "Positive Romberg test with eyes closed", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 4. NEUROLOGICAL SYSTEM (50 Questions)
+        // 4. RENAL & URINARY SYSTEM
         // ==========================================
-        { category: "Neurological System", question: "When assessing a patient using the Glasgow Coma Scale (GCS), what are the three parameters evaluated?", options: ["Reflexes, muscle tone, sensation", "Eye opening, verbal response, motor response", "Pupil reactivity, orientation, cranial nerves", "Level of consciousness, memory, balance"], answer: 1 },
-        { category: "Neurological System", question: "A patient exhibits sudden unilateral facial drooping, inability to wrinkle the forehead, and loss of taste on the anterior tongue. This indicates trauma/inflammation to which cranial nerve?", options: ["Cranial Nerve V (Trigeminal)", "Cranial Nerve VII (Facial)", "Cranial Nerve IX (Glossopharyngeal)", "Cranial Nerve XII (Hypoglossal)"], answer: 1 },
-        { category: "Neurological System", question: "What is the lowest possible total score on the Glasgow Coma Scale (GCS)?", options: ["0", "3", "5", "8"], answer: 1 },
-        { category: "Neurological System", question: "What is the highest possible total score on the Glasgow Coma Scale (GCS)?", options: ["10", "12", "15", "20"], answer: 2 },
-        { category: "Neurological System", question: "Which clinical triad comprises Cushing's triad, indicating increased intracranial pressure (ICP)?", options: ["Hypotension, tachycardia, tachypnea", "Hypertension with widening pulse pressure, bradycardia, and irregular respirations", "Fever, stiff neck, photophobia", "Jaundice, right upper quadrant pain, fever"], answer: 1 },
-        { category: "Neurological System", question: "What is normal intracranial pressure (ICP) in an adult?", options: ["0 to 5 mmHg", "5 to 15 mmHg", "20 to 35 mmHg", "40 to 50 mmHg"], answer: 1 },
-        { category: "Neurological System", question: "How is Cerebral Perfusion Pressure (CPP) calculated?", options: ["MAP minus ICP", "ICP plus MAP", "Systolic minus Diastolic BP", "Heart rate times stroke volume"], answer: 0 },
-        { category: "Neurological System", question: "What is the minimum recommended Cerebral Perfusion Pressure (CPP) to maintain adequate brain tissue perfusion?", options: ["30 mmHg", "50 mmHg", "60 to 70 mmHg", "100 mmHg"], answer: 2 },
-        { category: "Neurological System", question: "Which positioning is essential for a patient with increased intracranial pressure (ICP)?", options: ["Flat supine with neck flexed", "Head of bed elevated 30 degrees with head in neutral/midline alignment", "Trendelenburg position", "Prone position"], answer: 1 },
-        { category: "Neurological System", question: "What is the primary pathophysiology of an ischemic stroke?", options: ["Rupture of a cerebral blood vessel causing brain hemorrhage", "Interruption of blood flow to a region of the brain due to thrombosis or embolism", "Autoimmune demyelination of central nervous system neurons", "Inflammation of the meninges"], answer: 1 },
-        { category: "Neurological System", question: "What is the primary treatment window for administering IV recombinant tissue plasminogen activator (rt-PA / alteplase) in an ischemic stroke?", options: ["Within 3 hours (up to 4.5 hours in eligible patients) of symptom onset", "Within 12 to 24 hours", "Within 7 days", "Only after 48 hours"], answer: 0 },
-        { category: "Neurological System", question: "Which diagnostic test must be performed immediately upon arrival of a stroke patient to rule out intracranial hemorrhage before giving thrombolytics?", options: ["MRI brain", "Non-contrast CT scan of the head", "Carotid ultrasound", "Lumbar puncture"], answer: 1 },
-        { category: "Neurological System", question: "What term describes the inability to articulate speech (slurred or difficulty speaking)?", options: ["Aphasia", "Dysarthria", "Apraxia", "Agnosia"], answer: 1 },
-        { category: "Neurological System", question: "What term describes total or partial loss of the ability to use or understand language?", options: ["Dysarthria", "Aphasia", "Ataxia", "Graphesthesia"], answer: 1 },
-        { category: "Neurological System", question: "Which type of aphasia involves fluent speech that makes little sense and poor comprehension?", options: ["Broca's (expressive) aphasia", "Wernicke's (receptive) aphasia", "Global aphasia", "Conduction aphasia"], answer: 1 },
-        { category: "Neurological System", question: "Which type of aphasia involves labored, halting speech with intact comprehension?", options: ["Broca's (expressive) aphasia", "Wernicke's (receptive) aphasia", "Nominal aphasia", "Anomic aphasia"], answer: 0 },
-        { category: "Neurological System", question: "What is the medical term for temporary neurological dysfunction caused by focal brain ischemia without permanent infarction (mini-stroke)?", options: ["Transient Ischemic Attack (TIA)", "Cerebral aneurysm", "Subdural hematoma", "Epileptic aura"], answer: 0 },
-        { category: "Neurological System", question: "Which type of intracranial bleed is typically caused by tearing of the middle meningeal artery secondary to skull fracture (often with a brief loss of consciousness followed by a lucid interval)?", options: ["Subdural hematoma", "Epidural hematoma", "Subarachnoid hemorrhage", "Intracerebral hemorrhage"], answer: 1 },
-        { category: "Neurological System", question: "What is the classic description of pain associated with subarachnoid hemorrhage ('worst headache of my life')?", options: ["Thunderclap headache", "Dull throbbing migraine", "Cluster tension headache", "Sinus pressure headache"], answer: 0 },
-        { category: "Neurological System", question: "Which cranial nerve is tested by checking visual acuity and visual fields?", options: ["Cranial Nerve I", "Cranial Nerve II (Optic)", "Cranial Nerve III", "Cranial Nerve VIII"], answer: 1 },
-        { category: "Neurological System", question: "Which cranial nerves control extraocular eye movements (EOMs)?", options: ["CN II, III, IV", "CN III, IV, VI", "CN V, VII, IX", "CN X, XI, XII"], answer: 1 },
-        { category: "Neurological System", question: "Which cranial nerve is evaluated by assessing facial sensation (light touch, pain) and corneal reflex?", options: ["Cranial Nerve V (Trigeminal)", "Cranial Nerve VII (Facial)", "Cranial Nerve IX", "Cranial Nerve XII"], answer: 0 },
-        { category: "Neurological System", question: "Which cranial nerve is tested by asking the patient to shoulder shrug against resistance and turn their head?", options: ["Cranial Nerve IX", "Cranial Nerve X", "Cranial Nerve XI (Accessory)", "Cranial Nerve XII"], answer: 2 },
-        { category: "Neurological System", question: "What is the primary pathophysiology of Parkinson's disease?", options: ["Degeneration of dopamine-producing neurons in the substantia nigra of the basal ganglia", "Destruction of acetylcholine receptors at the neuromuscular junction", "Autoimmune demyelination of peripheral nerves", "Infection of the spinal cord by poliovirus"], answer: 0 },
-        { category: "Neurological System", question: "Which cardinal motor symptoms characterize Parkinson's disease?", options: ["Tremor at rest, rigidity, bradykinesia, and postural instability", "Flaccid paralysis, muscle wasting, and areflexia", "Chorea, ballismus, and dementia", "Ataxia and nystagmus"], answer: 0 },
-        { category: "Neurological System", question: "What is the primary medication used to replenish dopamine in Parkinson's disease?", options: ["Carbidopa-Levodopa", "Donepezil", "Phenytoin", "Baclofen"], answer: 0 },
-        { category: "Neurological System", question: "What is the primary pathophysiology of Multiple Sclerosis (MS)?", options: ["Autoimmune demyelination of white matter in the central nervous system", "Degeneration of motor neurons in the spinal cord and brainstem", "Accumulation of beta-amyloid plaques in the cerebral cortex", "Infection of brain tissue by herpes simplex virus"], answer: 0 },
-        { category: "Neurological System", question: "What is Myasthenia Gravis characterized by?", options: ["Autoimmune antibodies attacking and destroying postsynaptic acetylcholine receptors at the neuromuscular junction", "Excessive dopamine production", "Vitamin B12 deficiency", "Inflammation of the sciatic nerve"], answer: 0 },
-        { category: "Neurological System", question: "What is the hallmark clinical feature of Myasthenia Gravis that worsens with repeated muscle use and improves with rest?", options: ["Progressive muscle fatigue and weakness", "Sudden rigidity and spasticity", "Involuntary muscle twitching (fasciculations)", "Complete anesthesia of limbs"], answer: 0 },
-        { category: "Neurological System", question: "Which diagnostic test is used to differentiate myasthenic crisis from cholinergic crisis?", options: ["Tensilon (edrophonium) test", "Lumbar puncture", "Electroencephalogram (EEG)", "CT head"], answer: 0 },
-        { category: "Neurological System", question: "What is the antidote for cholinergic crisis caused by an excess of anticholinesterase medications?", options: ["Atropine sulfate", "Protamine sulfate", "Flumazenil", "Naloxone"], answer: 0 },
-        { category: "Neurological System", question: "What is Guillain-Barré syndrome characterized by?", options: ["Acute, ascending, symmetrical inflammatory demyelination of peripheral nerves leading to flaccid paralysis", "Descending paralysis starting from cranial nerves", "Chronic progressive weakness in upper limbs only", "Focal seizures"], answer: 0 },
-        { category: "Neurological System", question: "What is the greatest life-threatening complication of Guillain-Barré syndrome?", options: ["Respiratory failure due to paralysis of intercostal muscles and diaphragm", "Severe hypertension and stroke", "Hyperglycemic crisis", "Renal failure"], answer: 0 },
-        { category: "Neurological System", question: "What characterizes amyotrophic lateral sclerosis (ALS / Lou Gehrig's disease)?", options: ["Degeneration of both upper and lower motor neurons resulting in progressive muscle weakness and wasting with intact cognitive function", "Loss of memory and cognitive decline with preserved motor function", "Autoimmune demyelination with relapsing-remitting courses", "Epileptic seizures"], answer: 0 },
-        { category: "Neurological System", question: "Which diagnostic test confirms bacterial meningitis by analyzing cerebrospinal fluid (CSF)?", options: ["Lumbar puncture (spinal tap)", "EEG", "CT scan of brain", "Carotid angiogram"], answer: 0 },
-        { category: "Neurological System", question: "What CSF findings are characteristic of bacterial meningitis?", options: ["Elevated protein, decreased glucose, cloudy/purulent appearance, and high opening pressure", "Clear appearance, normal protein, normal glucose", "Elevated lymphocytes with normal glucose", "Bloody CSF with normal pressure"], answer: 0 },
-        { category: "Neurological System", question: "Which physical sign of meningitis involves resistance to knee extension when the hip is flexed?", options: ["Kernig's sign", "Brudzinski's sign", "Babinski sign", "Trousseau's sign"], answer: 0 },
-        { category: "Neurological System", question: "Which physical sign of meningitis involves involuntary flexion of the hips and knees when the patient's neck is flexed?", options: ["Kernig's sign", "Brudzinski's neck sign", "Chvostek's sign", "Homan's sign"], answer: 1 },
-        { category: "Neurological System", question: "What is the term for a prolonged seizure lasting longer than 5 minutes or seizures occurring back-to-back without recovery, constituting a medical emergency?", options: ["Status epilepticus", "Absence seizure", "Atonic seizure", "Myoclonic jerk"], answer: 0 },
-        { category: "Neurological System", question: "What is the primary drug class administered immediately to stop status epilepticus in the emergency setting?", options: ["IV benzodiazepines (e.g., lorazepam or diazepam)", "Oral analgesics", "Beta-blockers", "Antacids"], answer: 0 },
-        { category: "Neurological System", question: "Which therapeutic serum level range must be maintained for phenytoin (Dilantin)?", options: ["5 to 10 mcg/mL", "10 to 20 mcg/mL", "25 to 40 mcg/mL", "50 to 100 mcg/mL"], answer: 1 },
-        { category: "Neurological System", question: "What common side effect of phenytoin requires meticulous oral hygiene and dental check-ups?", options: ["Gingival hyperplasia (overgrowth of gum tissue)", "Hair loss", "Weight gain", "Retinal detachment"], answer: 0 },
-        { category: "Neurological System", question: "What is autonomic dysreflexia (hyperreflexia), and in which patient population does it occur?", options: ["Acute, life-threatening hypertensive emergency triggered by noxious stimuli below the level of spinal cord injury (T6 or higher)", "Hypotensive crisis in patients with brain tumors", "Seizure disorder in elderly adults", "Migraine headaches in adolescents"], answer: 0 },
-        { category: "Neurological System", question: "What are common triggers for autonomic dysreflexia?", options: ["Bladder distension (full catheter), fecal impaction, or tight clothing", "Bright lights and loud noises", "Eating cold foods", "Walking too fast"], answer: 0 },
-        { category: "Neurological System", question: "What is the nurse's first action when a patient with a spinal cord injury at T6 develops autonomic dysreflexia (severe throbbing headache, hypertension)?", options: ["Raise the head of the bed immediately to lower blood pressure and check for noxious stimuli (e.g., kinked catheter)", "Administer IV vasoconstrictors", "Place the patient flat in Trendelenburg position", "Encourage the patient to exercise"], answer: 0 },
-        { category: "Neurological System", question: "Which type of seizure involves brief, abrupt lapses in consciousness (staring spells), commonly seen in children?", options: ["Absence (petit mal) seizure", "Tonic-clonic (grand mal) seizure", "Myoclonic seizure", "Atonic seizure"], answer: 0 },
-        { category: "Neurological System", question: "What is the medical term for abnormal, involuntary, jerky movements often associated with Huntington's disease?", options: ["Chorea", "Tremor", "Ataxia", "Dystonia"], answer: 0 },
-        { category: "Neurological System", question: "Which diagnostic test records electrical activity of the brain to evaluate for seizure disorders?", options: ["Electroencephalogram (EEG)", "Electromyogram (EMG)", "Electrocardiogram (ECG)", "Echocardiogram"], answer: 0 },
-        { category: "Neurological System", question: "What is the primary function of the cerebellum?", options: ["Coordinate voluntary muscle movements, balance, and posture", "Regulate heart rate and respiration", "Process visual information", "Control higher thought processes and memory"], answer: 0 },
-        { category: "Neurological System", question: "Which part of the brainstem controls vital autonomic functions such as heart rate, blood pressure, and respiratory drive?", options: ["Medulla oblongata", "Cerebral cortex", "Thalamus", "Hypothalamus"], answer: 0 },
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which laboratory finding is most characteristic of prerenal acute kidney injury (AKI)?", 
+            options: [
+                { text: "BUN to serum creatinine ratio exceeding 20:1 with normal urine sediment", correct: true },
+                { text: "Elevated fractional excretion of sodium (FENa) greater than 3%", correct: false },
+                { text: "Presence of muddy brown granular casts in urinalysis", correct: false },
+                { text: "Fixed urinary specific gravity at 1.010 regardless of hydration status", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "What is the primary mechanism of action for loop diuretics (like furosemide)?", 
+            options: [
+                { text: "Inhibition of sodium and chloride reabsorption in the ascending loop of Henle", correct: true },
+                { text: "Competitive blockade of aldosterone receptors in the distal convoluted tubule", correct: false },
+                { text: "Osmotic drawing of water from intracellular spaces into the proximal tubule", correct: false },
+                { text: "Carbonic anhydrase enzyme inhibition in renal tubular cells", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which electrolyte imbalance is most life-threatening in end-stage renal disease (ESRD) due to cardiac arrhythmogenic risk?", 
+            options: [
+                { text: "Severe hypocalcemia", correct: false },
+                { text: "Hyperkalemia", correct: true },
+                { text: "Hyponatremia", correct: false },
+                { text: "Hypomagnesemia", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "What assessment finding is critical when managing a newly placed arteriovenous (AV) fistula for hemodialysis?", 
+            options: [
+                { text: "Presence of a palpable thrill and auscultated bruit over the access site", correct: true },
+                { text: "Cool, pale skin distal to the fistula site with absent pulses", correct: false },
+                { text: "Routine use of the access arm for blood pressure measurements", correct: false },
+                { text: "Tight circumferential dressing application around the midpoint", correct: false }
+            ] 
+        },
+        { 
+            category: "Renal & Urinary System", 
+            question: "Which clinical manifestation is classic for glomerulonephritis?", 
+            options: [
+                { text: "Polyuria, extreme thirst, and rapid weight loss", correct: false },
+                { text: "Periorbital edema, smoky/cola-colored urine, and hypertension", correct: true },
+                { text: "Painless gross hematuria without other physical findings", correct: false },
+                { text: "Foul-smelling cloudy urine accompanied by severe burning", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 5. GASTROINTESTINAL (GI) SYSTEM (50 Questions)
+        // 5. GASTROINTESTINAL SYSTEM
         // ==========================================
-        { category: "Gastrointestinal (GI) System", question: "Rebound tenderness at McBurney's point is a classic clinical sign associated with:", options: ["Cholecystitis", "Pancreatitis", "Appendicitis", "Diverticulitis"], answer: 2 },
-        { category: "Gastrointestinal (GI) System", question: "Which dietary modification is most appropriate for a patient suffering from Crohn's disease during an acute exacerbation?", options: ["High-fiber, raw vegetable diet", "Low-residue, low-fiber, high-protein diet", "High-fat, ketogenic diet", "High-sodium liquid diet"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary pathophysiological difference between Ulcerative Colitis and Crohn's disease?", options: ["Ulcerative colitis affects only the colon and rectum with continuous superficial mucosal inflammation; Crohn's can affect any part of the GI tract with transmural 'skip lesions'", "Crohn's disease is strictly limited to the rectal mucosa", "Ulcerative colitis involves deep transmural fistulas", "Crohn's disease never causes diarrhea"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Murphy's sign (abrupt cessation of inspiration during palpation of the right upper quadrant) is indicative of:", options: ["Acute cholecystitis", "Acute appendicitis", "Acute pancreatitis", "Small bowel obstruction"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which lab enzymes are characteristically elevated in acute pancreatitis?", options: ["Amylase and lipase", "AST and ALT", "BUN and creatinine", "Troponin and CK-MB"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is Cullen's sign (bruising around the umbilicus) indicative of?", options: ["Retroperitoneal hemorrhage or severe acute hemorrhagic pancreatitis", "Appendicitis", "Peptic ulcer perforation", "Cholelithiasis"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is Grey Turner's sign (bruising/discoloration of the flanks) indicative of?", options: ["Retroperitoneal hemorrhage / hemorrhagic pancreatitis", "Right-sided heart failure", "Renal stone obstruction", "Splenic rupture"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary causative organism linked to most peptic ulcers and chronic gastritis?", options: ["Helicobacter pylori (H. pylori)", "Escherichia coli", "Clostridium difficile", "Staphylococcus aureus"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which sign is characteristic of a duodenal ulcer versus a gastric ulcer?", options: ["Pain occurs 2 to 3 hours after meals and is often relieved by food ingestion", "Pain worsens immediately upon eating food", "Vomiting brings immediate worsening of pain", "Weight loss is prominent"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is a major life-threatening complication of liver cirrhosis characterized by elevated portal pressure?", options: ["Esophageal varices bleeding", "Pulmonary embolism", "Type 1 diabetes", "Hyperthyroidism"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which medication is commonly administered to reduce blood ammonia levels in hepatic encephalopathy by promoting excretion in stool?", options: ["Lactulose", "Furosemide", "Morphine sulfate", "Acetaminophen"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the clinical term for abnormal accumulation of serous fluid in the peritoneal cavity due to portal hypertension and hypoalbuminemia?", options: ["Ascites", "Pleural effusion", "Lymphedema", "Hydrocephalus"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which assessment finding is characteristic of hepatic encephalopathy?", options: ["Asterixis (liver flap tremor) and altered mental status", "Hyperactive reflexes and hypertension", "Exophthalmos", "Rigid board-like abdomen"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary cause of Clostridium difficile infection in hospitalized patients?", options: ["Recent broad-spectrum antibiotic therapy disrupting normal gut flora", "Consuming contaminated raw seafood", "Airborne transmission from room to room", "Autoimmune bowel disease"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What type of hand hygiene is required when caring for a patient with active C. diff infection?", options: ["Alcohol-based hand rub only", "Handwashing with soap and water (alcohol rubs do not kill C. diff spores)", "Wearing surgical gloves without hand hygiene", "No special precautions needed"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "Which precaution category is mandatory for C. diff?", options: ["Contact precautions (gown and gloves)", "Airborne precautions", "Droplet precautions", "Standard precautions only"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary clinical manifestation of a mechanical small bowel obstruction?",options: ["Colicky crampy abdominal pain, nausea, projectile vomiting, and high-pitched tinkling bowel sounds above the obstruction", "Watery diarrhea and low-grade fever", "Bradycardia and hypotension", "Rigid abdomen with absent bowel sounds initially"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What type of bowel sounds are heard late in a prolonged intestinal obstruction or paralytic ileus?", options: ["Hyperactive bowel sounds", "Hypoactive or completely absent bowel sounds", "High-pitched rushes only", "Bruits"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is the surgical creation of an opening from the ileum onto the abdominal wall for fecal elimination called?", options: ["Colostomy", "Ileostomy", "Gastrostomy", "Jejunostomy"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What characteristic distinguishes effluent from an ileostomy versus a sigmoid colostomy?", options: ["Ileostomy output is liquid to pasty and continuous with high electrolyte content; colostomy output becomes more formed and predictable depending on location", "Ileostomy output is completely solid", "Colostomy output is continuous liquid", "There is no difference"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What color should a healthy surgically created stoma appear upon assessment?", options: ["Pink to brick-red and moist", "Pale, white, or dusky blue/black", "Bright yellow", "Dry and black"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What does a dusky, dark purple, or black stoma indicate?", options: ["Normal healing", "Inadequate blood supply (ischemia or necrosis)", "Excessive fiber intake", "Normal pigmentation"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is GERD (Gastroesophageal Reflux Disease) caused by?", options: ["Incompetence of the lower esophageal sphincter (LES) allowing gastric contents to reflux", "Overproduction of saliva", "Hyperactivity of the pyloric sphincter", "Inflammation of the cecum"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which lifestyle and dietary modifications are recommended for GERD?", options: ["Eating large meals right before lying flat", "Avoiding trigger foods (caffeine, alcohol, chocolate, spicy foods), elevating the HOB, and not lying down for 2-3 hours after eating", "Consuming high-fat meals to slow digestion", "Sleeping flat on the back"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is Barrett's esophagus?", options: ["Precancerous metaplasia of the lower esophageal mucosa caused by chronic acid exposure", "Benign inflammation of the stomach lining", "Ulceration of the pylorus", "Stricture of the duodenum"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which diagnostic test visualizes the upper GI tract (esophagus, stomach, duodenum) using a flexible scope?", options: ["EGD (Esophagogastroduodenoscopy)", "Colonoscopy", "Barium enema", "Abdominal ultrasound"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the nurse's priority post-EGD before offering food or fluids?", options: ["Check for return of the gag reflex", "Check deep tendon reflexes", "Encourage immediate high-protein meal", "Check visual acuity"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is diverticulosis versus diverticulitis?", options: ["Diverticulosis is the presence of non-inflamed outpouchings in the colon wall; diverticulitis is inflammation and infection of those diverticula", "Diverticulitis is a congenital heart defect", "Diverticulosis involves acute bleeding only", "There is no difference"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What dietary recommendation is given to prevent diverticular disease (during quiescent periods)?", options: ["High-fiber diet and adequate fluid intake", "Low-fiber, low-residue diet for life", "Strict fat-free diet", "High-protein, zero-carb diet"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the classic pain location for acute diverticulitis?", options: ["Right upper quadrant", "Left lower quadrant", "Periumbilical area only", "Suprapubic region"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is intussusception?", options: ["Telescoping of one segment of the bowel into another, causing obstruction", "Twisting of the bowel upon itself", "Inflammation of the appendix", "Outpouching of the ileum"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the classic stool description associated with intussusception in infants?", options: ["Current jelly stools (mucus and blood)", "Hard, pellet-like stools", "Clay-colored pale stools", "Bright green watery stools"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is volvulus?", options: ["Twisting of the bowel on itself causing intestinal obstruction and ischemia", "Outpouching of esophageal tissue", "Herniation of the stomach through the diaphragm", "Infection of the liver"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is a hiatal hernia?", options: ["Protrusion of a portion of the stomach through the esophageal hiatus of the diaphragm", "Protrusion of bowel through the inguinal ring", "Herniation of the umbilical cord", "Protrusion of the liver through the abdominal wall"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which hepatitis types are transmitted primarily via the fecal-oral route (contaminated food/water)?", options: ["Hepatitis A and Hepatitis E", "Hepatitis B and Hepatitis C", "Hepatitis C and Hepatitis D", "Hepatitis B and Hepatitis E"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which hepatitis types are transmitted through blood and body fluids (parenteral / sexual)?", options: ["Hepatitis A and E", "Hepatitis B, C, and D", "Hepatitis A and C", "Hepatitis E only"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is the medical term for dark, tarry stools indicating upper gastrointestinal bleeding?", options: ["Hematochezia", "Melena", "Steatorrhea", "Hematemesis"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is the term for bright red blood passed through the rectum, usually indicating lower GI bleeding?", options: ["Melena", "Hematochezia", "Hematemesis", "Steatorrhea"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is steatorrhea?", options: ["Fatty, foul-smelling, pale, bulky stools due to fat malabsorption", "Watery diarrhea with mucus", "Black tarry stools", "Hard pebble stools"], answer: 0 },
-        { category: "Gauthorized/Gastrointestinal", question: "Which vitamin deficiency is common following bariatric surgery (gastric bypass) due to loss of intrinsic factor and parietal cell secretion?", options: ["Vitamin B12 (Pernicious anemia risk)", "Vitamin C", "Vitamin K", "Vitamin D"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is dumping syndrome?", options: ["Rapid emptying of hypertonic gastric contents into the small intestine, causing vasomotor and GI symptoms after eating", "Delayed stomach emptying", "Backflow of stomach acid into the esophagus", "Inflammation of the gallbladder"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which dietary guidelines help prevent dumping syndrome after gastric surgery?", options: ["Eat high-carbohydrate, high-sugar meals with fluids during meals", "Eat small, frequent meals, separate liquids from solids, and lie down after eating", "Drink large volumes of water with meals", "Avoid proteins and fats entirely"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is cholelithiasis?", options: ["Presence of gallstones in the gallbladder", "Inflammation of the pancreas", "Infection of the liver", "Ulceration of the bile duct"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is cholecystitis?", options: ["Inflammation of the gallbladder, often secondary to gallstones blocking the cystic duct", "Gallstone formation without inflammation", "Infection of the appendix", "Diverticular disease of the colon"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "Which sign is expected in a patient with total biliary obstruction (gallstones blocking the common bile duct)?", options: ["Jaundice, dark amber urine, and clay-colored (acholic) stools", "Bright red bloody stools", "Polyuria and polydipsia", "Hypoglycemia"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary function of bile produced by the liver?", options: ["Digest proteins", "Emulsify dietary fats in the small intestine", "Absorb vitamin B12", "Produce insulin"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "Which diagnostic test uses a barium enema or colonoscopy to screen for colorectal polyps and cancer?", options: ["Colonoscopy", "EGD", "Abdominal ultrasound", "Chest X-ray"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What is the primary complication of a perforated peptic ulcer?", options: ["Chemical peritonitis with a rigid, board-like abdomen and severe acute pain", "Chronic constipation", "Left-sided heart failure", "Renal failure"], answer: 0 },
-        { category: "Gastrointestinal (GI) System", question: "What position is recommended for a patient experiencing acute peritonitis with severe abdominal pain?", options: ["Flat on back with legs straight", "Side-lying position with knees flexed toward the chest (to reduce abdominal tension)", "Trendelenburg position", "Prone position"], answer: 1 },
-        { category: "Gastrointestinal (GI) System", question: "What is the medical term for difficulty swallowing?", options: ["Dysphagia", "Dyspepsia", "Dysphasia", "Dyspnea"], answer: 0 },
+        { 
+            category: "Gastrointestinal System", 
+            question: "A patient with acute appendicitis typically localizes abdominal pain to which anatomical location?", 
+            options: [
+                { text: "Right upper quadrant radiating to the right scapula", correct: false },
+                { text: "McBurney's point located in the right lower quadrant", correct: true },
+                { text: "Left lower quadrant associated with diverticular pockets", correct: false },
+                { text: "Epigastric region radiating directly through to the back", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "Which complication is most associated with severe acute pancreatitis requiring intensive nursing monitoring?", 
+            options: [
+                { text: "Acute respiratory distress syndrome (ARDS) and systemic inflammatory response", correct: true },
+                { text: "Spontaneous renal tubular necrosis and hypercalcemia", correct: false },
+                { text: "Chronic iron-deficiency anemia due to slow bleeding", correct: false },
+                { text: "Mechanical small bowel obstruction from adhesions", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "What is the primary pathophysiological cause of esophageal varices in patients with cirrhosis?", 
+            options: [
+                { text: "Portal hypertension causing blood to back up into collateral portosystemic channels", correct: true },
+                { text: "Autoimmune destruction of the lower esophageal mucosal lining", correct: false },
+                { text: "Chronic ingestion of highly acidic chemical substances", correct: false },
+                { text: "Congenital weakness of the esophageal muscular sphincter layers", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "Which dietary instruction is appropriate for a patient newly diagnosed with active celiac disease?", 
+            options: [
+                { text: "Eliminate all foods containing wheat, barley, and rye", correct: true },
+                { text: "Restrict daily dairy intake and completely avoid fresh fruits", correct: false },
+                { text: "Increase consumption of whole-grain oat and wheat breads", correct: false },
+                { text: "Follow a clear liquid diet containing high sugar concentrates", correct: false }
+            ] 
+        },
+        { 
+            category: "Gastrointestinal System", 
+            question: "What assessment finding indicates effective decompression of the stomach via a nasogastric (NG) tube set to low intermittent suction?", 
+            options: [
+                { text: "Firm, distended abdomen with high-pitched tinkling bowel sounds", correct: false },
+                { text: "Decreased abdominal distension, absence of nausea, and steady drainage output", correct: true },
+                { text: "Continuous bright red blood filling the collection canister", correct: false },
+                { text: "Patient report of severe cramping and upper abdominal pressure", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 6. RENAL & GENITOURINARY (50 Questions)
+        // 6. ENDOCRINE SYSTEM
         // ==========================================
-        { category: "Renal and Genitourinary System", question: "Normal adult urine output should generally not fall below what threshold over a sustained period?", options: ["10 mL/hr", "30 mL/hr", "60 mL/hr", "100 mL/hr"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "In chronic kidney disease (CKD), electrolyte imbalances commonly feature elevated levels of which ion?", options: ["Sodium", "Potassium", "Calcium", "Chloride"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is the normal adult glomerular filtration rate (GFR)?", options: ["30 mL/min", "60 mL/min", "90 mL/min or higher", "150 mL/min"], answer: 2 },
-        { category: "Renal and Genitourinary System", question: "Which lab test is most sensitive and specific for evaluating renal function?", options: ["Serum creatinine", "Blood urea nitrogen (BUN) alone", "Serum sodium", "Urine specific gravity"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the normal range for serum creatinine in an adult?", options: ["0.2 to 0.4 mg/dL", "0.6 to 1.2 mg/dL", "2.0 to 4.0 mg/dL", "5.0 to 8.0 mg/dL"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is the normal adult blood urea nitrogen (BUN) range?", options: ["5 to 20 mg/dL", "25 to 40 mg/dL", "45 to 60 mg/dL", "70 to 100 mg/dL"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is prerenal acute kidney injury (AKI) caused by?", options: ["Direct toxic injury to the renal tubules", "Interruption of blood flow and decreased perfusion to the kidneys (e.g., severe hypovolemia or shock)", "Obstruction of the urinary outflow tract", "Glomerulonephritis"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is intrarenal (intrinsic) AKI caused by?", options: ["Severe dehydration", "Direct damage to renal parenchymal tissue (e.g., acute tubular necrosis from nephrotoxic drugs or ischemia)", "Benign prostatic hyperplasia", "Kidney stones in the ureter"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is postrenal AKI caused by?", options: ["Mechanical obstruction of urinary outflow (e.g., BPH, kidney stones, tumor)", "Myocardial infarction", "Glomerular antibody deposition", "Cirrhosis of the liver"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which medications are known to be nephrotoxic and require careful monitoring of renal function?", options: ["Aminoglycoside antibiotics (e.g., gentamicin), NSAIDs, and radiocontrast dye", "Multivitamins and vitamin C", "Inhaled bronchodilators", "Sublingual nitroglycerin"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the primary clinical manifestation of nephrotic syndrome?", options: ["Massive proteinuria, hypoalbuminemia, generalized edema (anasarca), and hyperlipidemia", "Polyuria and dehydration", "Hematuria and severe hypertension", "Polycythemia"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the hallmark urinalysis finding in acute glomerulonephritis?", options: ["Gross or microscopic hematuria (red blood cell casts) and proteinuria", "Pure clear water", "Glycosuria", "Bacteriuria with no blood"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is a frequent antecedent infection associated with acute poststreptococcal glomerulonephritis?", options: ["Recent group A beta-hemolytic streptococcal throat or skin infection", "Viral hepatitis", "Fungal pneumonia", "Urinary tract infection by E. coli"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the medical term for kidney stones?", options: ["Nephrolithiasis / Urolithiasis", "Glomerulonephritis", "Cystitis", "Pyelonephritis"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What type of kidney stone is most common?", options: ["Calcium oxalate / Calcium phosphate stones", "Uric acid stones", "Struvite stones", "Cystine stones"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What nursing intervention is crucial when caring for a client suspected of having kidney stones (nephrolithiasis)?", options: ["Strain all urine through a gauze/urine strainer to catch stones for analysis", "Restrict all fluid intake", "Encourage strict bed rest flat", "Catheterize every 2 hours"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is pyelonephritis?", options: ["Infection and inflammation of the renal pelvis and parenchyma, typically ascending from a lower UTI", "Inflammation of the urinary bladder only", "Benign enlargement of the prostate", "Non-inflammatory cyst formation"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which physical exam finding is classic for pyelonephritis?", options: ["Costovertebral angle (CVA) tenderness on percussion", "McBurney's point rebound tenderness", "Murphy's sign", "Lower quadrant guarding"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is cystitis?", options: ["Inflammation and infection of the urinary bladder", "Infection of the kidney tissue", "Inflammation of the prostate gland", "Stricture of the urethra"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What are classic symptoms of a lower urinary tract infection (cystitis)?", options: ["Dysuria, urinary frequency, urgency, suprapubic discomfort, and cloudy/malodorous urine", "Flank pain, high fever, and chills", "Polyuria and excessive thirst", "Weight gain and jaundice"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is benign prostatic hyperplasia (BPH)?", options: ["Noncancerous enlargement of the prostate gland common in aging men, causing urinary obstruction", "Malignant cancer of the prostate capsule", "Infection of the seminal vesicles", "Atrophy of the prostate"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What are common voiding symptoms associated with BPH?", options: ["Weak urinary stream, hesitancy, post-void dribbling, urinary retention, and nocturia", "Incontinence with high urine output", "Burning pain with no obstruction", "Complete anuria"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which surgical procedure is commonly performed to remove obstructing prostate tissue via the urethra?", options: ["Transurethral resection of the prostate (TURP)", "Radical nephrectomy", "Lithotripsy", "Cystectomy"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the purpose of continuous bladder irrigation (CBI) following a TURP?", options: ["Prevent and flush out blood clots to keep the urinary catheter patent", "Deliver continuous antibiotic solutions to the bladder", "Measure blood pressure inside the bladder", "Induce diuresis"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What color should the urinary drainage be maintained at when monitoring continuous bladder irrigation (CBI) post-TURP?", options: ["Dark red with large blood clots", "Light pink or clear amber with no large clots", "Bright orange", "Dark brown"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is the primary action if bladder irrigation drainage becomes bright red and clotted, with the patient reporting bladder spasms?", options: ["Stop the irrigation immediately and notify the surgeon, increase irrigation flow rate or manually irrigate per protocol to clear clots", "Remove the urinary catheter immediately", "Administer oral diuretics", "Restrict fluid intake"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is polycystic kidney disease (PKD)?", options: ["Genetic disorder characterized by growth of numerous fluid-filled cysts in the kidneys leading to renal enlargement and failure", "Infection of the renal pelvis", "Single benign kidney cyst", "Congenital absence of one kidney"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What are the primary vascular and systemic complications associated with chronic kidney disease (CKD)?", options: ["Hypertension, anemia, renal osteodystrophy, and electrolyte imbalances (hyperkalemia, hyperphosphatemia)", "Hypotension and polycythemia", "Hypercalcemia and alkalosis", "Rapid weight loss"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Why does anemia develop in chronic kidney disease?", options: ["Decreased production of erythropoietin by the damaged kidneys", "Excessive dietary iron intake", "Increased red blood cell destruction in the spleen", "Vitamin C toxicity"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which medication is prescribed to treat anemia in chronic kidney disease by stimulating red blood cell production?", options: ["Epoetin alfa (EPO)", "Furosemide", "Digoxin", "Warfarin"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is renal osteodystrophy in CKD caused by?", options: ["Failure of the kidney to activate vitamin D and excrete phosphorus, leading to secondary hyperparathyroidism and bone demineralization", "Excess calcium absorption from the diet", "High physical activity", "Excessive sunlight exposure"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What type of medication must be taken with meals by patients with CKD to bind dietary phosphorus?", options: ["Phosphate binders (e.g., calcium acetate or sevelamer)", "Potassium supplements", "Loop diuretics", "Antacids with magnesium"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What assessment must be performed routinely on an arteriovenous (AV) fistula created for hemodialysis?", options: ["Palpate for a thrill and auscultate for a bruit over the fistula site", "Check blood pressure on the fistula arm every hour", "Perform venipuncture and start IV lines directly in the fistula", "Apply tight pressure dressings continuously"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What activities must be strictly avoided on the arm with an AV fistula?", options: ["Blood pressure measurements, venipuncture, and carrying heavy items", "Gentle range of motion exercises", "Washing with mild soap and water", "Checking radial pulse"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the primary risk of peritoneal dialysis?", options: ["Peritonitis (infection of the peritoneal cavity)", "Air embolism to the brain", "Hemorrhage from the coronary arteries", "Immediate airway obstruction"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What sign indicates peritonitis in a patient undergoing peritoneal dialysis?", options: ["Cloudy peritoneal effluent fluid, abdominal pain, and fever", "Clear yellow drainage and no pain", "High urine output", "Bradycardia"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is urinary stress incontinence?", options: ["Involuntary leakage of urine during activities that increase intra-abdominal pressure (e.g., coughing, sneezing, lifting)", "Inability to reach the toilet in time due to an overactive bladder", "Continuous dribbling due to urinary retention", "Incontinence caused by cognitive impairment"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What are Kegel exercises used for?", options: ["Strengthen pelvic floor muscles to improve urinary control and reduce stress incontinence", "Strengthen abdominal wall muscles for heavy lifting", "Increase bladder capacity by stretching the detrusor muscle", "Lower blood pressure"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is urinary urge incontinence (overactive bladder)?", options: ["Sudden, intense urge to urinate followed by involuntary loss of urine", "Leakage only during coughing or sneezing", "Constant dribbling from an overfilled bladder", "Incontinence due to physical immobility"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is urinary retention?", options: ["Inability to empty the bladder completely, leading to residual urine accumulation", "Inability to produce urine in the kidneys", "Frequent passing of small volumes of dilute urine", "Loss of bladder sensation"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which diagnostic tool noninvasively measures post-void residual (PVR) urine volume in the bladder?", options: ["Bladder scanner (portable ultrasound)", "Cystoscopy", "Intravenous pyelogram (IVP)", "Renal biopsy"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the term for complete suppression or absence of urine production (less than 50 mL/day)?", options: ["Oliguria", "Anuria", "Polyuria", "Dysuria"], answer: 1 },
-        { category: "Renal and Genitourinary System", question: "What is oliguria defined as?", options: ["Urine output of less than 400 mL per day (or less than 30 mL/hr)", "Urine output greater than 3,000 mL per day", "Normal urine output", "Completely absent urine"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is polyuria?", options: ["Excessive production and passing of large volumes of urine", "Painful urination", "Blood in urine", "Nighttime urination"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is nocturia?", options: ["Excessive urination occurring at night waking the patient from sleep", "Inability to urinate during the day", "Incontinence during sleep", "Dark colored urine at night"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "Which electrolyte must be treated immediately with emergency measures (e.g., IV regular insulin and glucose) in renal failure due to risk of fatal cardiac arrhythmias?", options: ["Hyperkalemia", "Hypocalcemia", "Hyponatremia", "Hypomagnesemia"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is the primary action of sodium polystyrene sulfonate (Kayexalate) in renal failure?", options: ["Exchange sodium ions for potassium ions in the intestinal tract to lower serum potassium", "Lower blood pressure by vasodilation", "Increase calcium absorption", "Dissolve kidney stones"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is extracorporeal shock wave lithotripsy (ESWL) used for?", options: ["Noninvasively break up kidney stones into small fragments using shock waves so they can pass in urine", "Surgically remove the prostate gland", "Drain fluid from peritoneal dialysis", "Filter blood during hemodialysis"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What nursing care is priority following a renal biopsy?", options: ["Monitor vital signs and check for flank pain and bleeding; keep patient on bed rest in a supine/flat position for a specified period", "Encourage immediate ambulation and heavy lifting", "Apply heat to the biopsy site continuously", "Restrict all oral fluids"], answer: 0 },
-        { category: "Renal and Genitourinary System", question: "What is a normal specific gravity range for human urine?", options: ["1.003 to 1.030", "1.050 to 1.080", "0.980 to 1.000", "1.040 to 1.060"], answer: 0 },
+        { 
+            category: "Endocrine System", 
+            question: "Which clinical features differentiate Diabetic Ketoacidosis (DKA) from Hyperglycemic Hyperosmolar State (HHS)?", 
+            options: [
+                { text: "Presence of severe ketoacidosis, Kussmaul respirations, and ketonuria in DKA", correct: true },
+                { text: "Extremely high blood glucose levels exceeding 1000 mg/dL unique to DKA", correct: false },
+                { text: "Normal serum pH and bicarbonate values observed during active DKA episodes", correct: false },
+                { text: "Absence of dehydration or electrolyte imbalance in HHS states", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What is the primary hormonal deficiency responsible for Diabetes Insipidus (DI)?", 
+            options: [
+                { text: "Insulin production failure from pancreatic beta cells", correct: false },
+                { text: "Antidiuretic hormone (ADH) deficiency or cellular resistance", correct: true },
+                { text: "Excessive systemic cortisol hormone secretion", correct: false },
+                { text: "Primary hyperparathyroidism with calcium dumping", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "Which clinical sign suggests severe hypocalcemia following a thyroidectomy procedure?", 
+            options: [
+                { text: "Positive Trousseau's and Chvostek's signs", correct: true },
+                { text: "Bradycardia and moist warm skin texture", correct: false },
+                { text: "Marked exophthalmos and lid lag presentation", correct: false },
+                { text: "Hypertension with central truncal obesity", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What classic physical changes are observed in a patient with untreated Cushing's syndrome?", 
+            options: [
+                { text: "Moon face, buffalo hump, truncal obesity, and purple abdominal striae", correct: true },
+                { text: "Extreme weight loss, bronze skin pigmentation, and hypotension", correct: false },
+                { text: "Bulging eyeballs, fine tremors, and heat intolerance", correct: false },
+                { text: "Cold intolerance, dry coarse skin, and periorbital puffiness", correct: false }
+            ] 
+        },
+        { 
+            category: "Endocrine System", 
+            question: "What is the priority nursing intervention during an acute adrenal crisis (Addisonian crisis)?", 
+            options: [
+                { text: "Administer rapid intravenous normal saline fluid boluses and IV hydrocortisone", correct: true },
+                { text: "Administer high-dose oral sliding-scale regular insulin", correct: false },
+                { text: "Restrict daily sodium intake to prevent volume overload", correct: false },
+                { text: "Apply ice packs to lower core body temperature rapidly", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 7. MUSCULOSKELETAL SYSTEM (50 Questions)
+        // 7. MUSCULOSKELETAL SYSTEM
         // ==========================================
-        { category: "Musculoskeletal System", question: "Which assessment finding is characteristic of a fractured hip?", options: ["Internal rotation and leg lengthening", "External rotation and shortened extremity", "Inability to flex the knee symmetrically", "Complete paralysis of the affected limb"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What is the primary pathophysiology behind osteoporosis?", options: ["Autoimmune destruction of joint cartilage", "Imbalance resulting in bone resorption exceeding bone formation", "Excessive mineralization of the bone matrix", "Chronic inflammation of skeletal muscle tissue"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What is the primary difference in joint involvement between osteoarthritis (OA) and rheumatoid arthritis (RA)?", options: ["OA is a degenerative wear-and-tear joint disease typically unilateral/asymmetrical; RA is a systemic autoimmune inflammatory disease causing symmetrical joint destruction", "RA is caused by heavy lifting only", "OA involves systemic organ failure", "There is no difference"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which hand deformities are characteristic of chronic rheumatoid arthritis?", options: ["Heberden's and Bouchard's nodes", "Swan-neck deformity, ulnar deviation, and boutonnière deformity", "Dupuytren's contracture", "Trigger finger"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What are Heberden's nodes and Bouchard's nodes associated with?", options: ["Osteoarthritis (OA)", "Rheumatoid arthritis (RA)", "Gouty arthritis", "Septic arthritis"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the primary metabolic cause of gout?", options: ["Hyperuricemia (elevated serum uric acid levels) leading to monosodium urate crystal deposition in joints", "Calcium deficiency", "Vitamin D toxicity", "Autoimmune destruction of bone marrow"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which joint is most classically affected initially in acute gouty arthritis?", options: ["First metatarsophalangeal joint (great toe / podagra)", "Knee joint", "Wrist joint", "Temporomandibular joint"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which dietary components should be limited by patients with gout?", options: ["Purine-rich foods (red meat, seafood, organ meats) and alcohol (especially beer)", "Calcium-rich dairy products", "Fresh green leafy vegetables", "Low-fat milk"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which medication is prescribed for acute gout attacks to reduce inflammation?", options: ["Colchicine or NSAIDs", "Allopurinol", "Calcium supplements", "Penicillin"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which medication is prescribed for long-term management of gout to lower uric acid production?", options: ["Allopurinol", "Colchicine", "Morphine", "Furosemide"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is compartment syndrome?", options: ["Increased pressure within a confined muscle compartment leading to ischemia, severe pain out of proportion to injury, and neurovascular compromise", "Infection of the bone marrow", "Inflammation of joint bursae", "Degeneration of spinal discs"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What are the classic '5 Ps' of neurovascular assessment used to evaluate for compartment syndrome or fracture complications?", options: ["Pain, Pallor, Pulselessness, Paresthesia, Paralysis", "Pressure, Pulse, Posture, Pallor, Perspiration", "Pain, Paralysis, Pulse, Petechiae, Pruritus", "Pallor, Pulse, Phlebitis, Pain, Paralysis"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the earliest and most reliable symptom of compartment syndrome?", options: ["Loss of distal pulses", "Severe pain out of proportion to the injury that is unrelieved by opioid analgesics", "Cyanosis of the toes", "Complete paralysis"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What is the nurse's immediate priority action if compartment syndrome is suspected in a limb in a cast?", options: ["Elevate the limb above the heart level", "Notify the physician and prepare for immediate cast bivalving or removal; keep limb at heart level (not elevated)", "Apply ice packs directly to the cast", "Administer extra doses of narcotics"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What is osteomyelitis?", options: ["Severe infection of the bone and bone marrow", "Degeneration of joint cartilage", "Inflammation of skeletal muscle", "Benign bone tumor"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is fat embolism syndrome, and when does it typically occur?", options: ["Systemic fat globules from bone marrow entering circulation after long bone fractures (e.g., femur), presenting with respiratory distress, petechiae, and altered mental status within 24-72 hours", "Infection occurring 3 weeks after surgery", "Blood clot in calf veins after knee surgery", "Severe allergic reaction to orthopedic hardware"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What physical sign is a hallmark of fat embolism syndrome?", options: ["Distinct petechial rash over the chest, neck, and axilla", "Facial droop", "Jaundice", "Spider angiomas"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is skeletal traction versus skin traction?", options: ["Skeletal traction uses pins, wires, or tongs surgically inserted directly into bone; skin traction uses external devices applied to the skin (e.g., Buck's traction)", "Skin traction uses metal pins in bone", "There is no functional difference", "Skeletal traction is used only for pediatric arm fractures"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is an important nursing principle regarding traction weights?", options: ["Weights must hang freely and never touch the floor or rest on the bed", "Weights can be removed periodically for patient comfort", "Weights should rest on the bed to reduce pull", "Weights should be increased by the nurse daily"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What precautions must be maintained following a total hip replacement (posterior approach)?", options: ["Avoid hip flexion beyond 90 degrees, avoid adduction across midline, and avoid internal rotation", "Cross legs freely at all times", "Sit in low chairs without armrests", "Bend forward at the waist past 90 degrees"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What assistive device should a patient use to sit down after a total hip replacement?", options: ["A high-seat chair with armrests and an elevated toilet seat", "A soft deep couch", "A low stool without support", "Standing without support"], answer: 0 },
-        { category: "Musculoskeletal System", question: "How should a patient using crutches navigate stairs?", options: ["'Up with the good, down with the bad' (Good leg goes up first, bad leg goes down first with crutches)", "Bad leg goes up first", "Both crutches go down last", "Never use crutches on stairs"], answer: 0 },
-        { category: "Musculoskeletal System", question: "When walking with a cane, on which side should the patient hold the cane?", options: ["On the affected (weak) side", "On the unaffected (strong) side", "In both hands simultaneously", "Whichever hand is dominant"], answer: 1 },
-        { category: "Musculoskeletal System", question: "What is scoliosis?", options: ["Lateral curvature of the spine", "Forward rounding of the upper back (hunchback)", "Swayback (lordosis)", "Inflammation of vertebrae"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is kyphosis?", options: ["Exaggerated outward curvature of the thoracic spine (hunchback)", "Lateral spinal curve", "Inward lumbar curve", "Slipped disc"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is lordosis?", options: ["Exaggerated inward curvature of the lumbar spine (swayback)", "Hunchback", "Side-to-side curve", "Spinal fusion"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is carpal tunnel syndrome?", options: ["Compression of the median nerve as it passes through the carpal tunnel in the wrist", "Inflammation of the ulnar nerve at the elbow", "Arthritis of the thumb joint", "Tendonitis of the rotator cuff"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which tests are used to assess for carpal tunnel syndrome?", options: ["Phalen's test and Tinel's sign", "Homan's sign and Kernig's sign", "Chvostek's and Trousseau's signs", "Murphy's sign"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a strain versus a sprain?", options: ["Strain is an injury to muscle or tendon; sprain is an injury to ligaments supporting a joint", "Strain is an injury to bone; sprain is muscle tear", "There is no difference", "Sprains only occur in the spine"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What does the RICE acronym stand for in initial musculoskeletal injury management?", options: ["Rest, Ice, Compression, Elevation", "Run, Immobilize, Clean, Exercise", "Read, Inspect, Cool, Evaluate", "Relax, Infiltrate, Cast, Elevate"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a compound (open) fracture?", options: ["A fracture in which the broken bone protrudes through the skin or an open wound leads down to the fracture site", "A simple hairline crack", "A fracture with multiple bone fragments", "A fracture that heals instantly"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the primary risk associated with an open fracture?", options: ["Severe infection / osteomyelitis", "Rapid bone overgrowth", "Immediate muscle paralysis", "Metabolic alkalosis"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is osteoporosis screening recommended via DEXA scan for women?", options: ["Beginning at age 65 (or earlier for high risk)", "At age 20", "Only after a fracture occurs", "Not necessary for women"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which vitamin is essential for calcium absorption in the gastrointestinal tract?", options: ["Vitamin D", "Vitamin C", "Vitamin K", "Vitamin B12"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is Paget's disease of bone?", options: ["Chronic bone disorder characterized by abnormal, accelerated bone remodeling leading to structurally enlarged, fragile, and misshapen bones", "Autoimmune joint inflammation", "Acute calcium deficiency", "Infection of bone marrow"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a greenstick fracture?", options: ["An incomplete fracture where the bone bends and cracks, commonly seen in children", "A complete transverse break", "A comminuted fracture", "A pathologic tumor fracture"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a comminuted fracture?", options: ["A fracture in which the bone is splintered or crushed into multiple fragments", "A clean single break", "A hairline crack", "A twisting spiral break"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a pathologic fracture?", options: ["A fracture occurring at the site of weakened bone diseased by osteoporosis, infection, or tumor, with minimal trauma", "A fracture caused by high-speed impact trauma", "A sports fracture", "A birth fracture"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a compound fracture also known as?", options: ["Open fracture", "Closed fracture", "Simple fracture", "Greenstick fracture"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the function of osteoblasts?", options: ["Bone-forming cells", "Bone-resorbing cells", "Cartilage-producing cells", "Muscle fibers"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the function of osteoclasts?", options: ["Cells that break down and resorb bone tissue", "Cells that build new bone matrix", "Cells that store calcium in blood", "Nerve cells in bone"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the term for grating sound or sensation produced by friction between bone and bone or fractured bone ends?", options: ["Crepitus", "Clonus", "Chorea", "Contracture"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is fibromyalgia?", options: ["Chronic widespread musculoskeletal pain syndrome accompanied by fatigue, sleep disturbances, and tender points", "Acute joint infection", "Degenerative disc disease", "Inflammatory muscle wasting"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a herniated nucleus pulposus (slipped disc)?", options: ["Protrusion of the gelatinous center of an intervertebral disc through its outer ring, compressing spinal nerves", "Fracture of a vertebral body", "Inflammation of spinal ligaments", "Curvature of the spine"], answer: 0 },
-        { category: "Musculoskeletal System", question: "Which spinal nerve roots are most commonly affected by lumbar disc herniation resulting in sciatica?", options: ["L4-L5 and L5-S1", "C1-C3", "T1-T4", "S4-S5"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is a sprain involving complete tearing of a ligament called?", options: ["Grade III sprain (complete tear)", "Grade I sprain", "Simple strain", "Hairline fracture"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is skeletal muscle relaxant medication primarily used for?", options: ["Relieve acute painful muscle spasms associated with musculoskeletal conditions", "Cure permanent muscle paralysis", "Increase bone mineral density", "Lower blood pressure"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What safety precaution is essential for patients taking skeletal muscle relaxants (e.g., cyclobenzaprine)?", options: ["Warn against driving or operating machinery due to sedation and dizziness", "Take on an empty stomach with caffeine", "Avoid all fluid intake", "Exercise vigorously"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is the medical term for clubfoot?", options: ["Talipes equinovarus", "Scoliosis", "Kyphosis", "Hallux valgus"], answer: 0 },
-        { category: "Musculoskeletal System", question: "What is bunion medical terminology?", options: ["Hallux valgus", "Talipes", "Hammertoe", "Osteophyte"], answer: 0 },
+        { 
+            category: "Musculoskeletal System", 
+            question: "What are the classic '5 Ps' of neurovascular compromise associated with compartment syndrome?", 
+            options: [
+                { text: "Pain, pallor, pulselessness, paresthesia, and paralysis", correct: true },
+                { text: "Pressure, pus, pyrexia, petechiae, and palpitations", correct: false },
+                { text: "Perfusion, pigmentation, paralysis, polyuria, and pain", correct: false },
+                { text: "Paralysis, purpura, pitting edema, pallor, and pruritus", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "Which nursing intervention is essential when caring for a patient in skeletal traction?", 
+            options: [
+                { text: "Ensure weights hang freely and do not touch the floor or bed frame", correct: true },
+                { text: "Temporarily lift or remove traction weights during routine repositioning", correct: false },
+                { text: "Apply firm pressure directly over pin insertion sites to stop drainage", correct: false },
+                { text: "Loosen traction ropes whenever the patient reports muscle spasms", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "What clinical sign is most indicative of a fat embolism syndrome following a long bone fracture?", 
+            options: [
+                { text: "Petechial rash across the chest, neck, and axilla combined with respiratory distress", correct: true },
+                { text: "Sudden high fever and localized purulent drainage from the fracture site", correct: false },
+                { text: "Immediate drop in serum potassium levels with severe muscle tetany", correct: false },
+                { text: "Profound bradycardia accompanied by widening pulse pressures", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "Which physical finding is characteristic of osteoarthritis compared to rheumatoid arthritis?", 
+            options: [
+                { text: "Asymmetrical joint involvement associated with wear-and-tear and bone spurs", correct: true },
+                { text: "Symmetrical systemic joint inflammation with characteristic ulnar deviation", correct: false },
+                { text: "Early morning joint stiffness lasting longer than one full hour", correct: false },
+                { text: "Systemic symptoms including low-grade fever, fatigue, and malaise", correct: false }
+            ] 
+        },
+        { 
+            category: "Musculoskeletal System", 
+            question: "What instruction should be reinforced for a patient learning to walk with crutches using a three-point gait?", 
+            options: [
+                { text: "Advance both crutches and the weak leg simultaneously, then step forward with the strong leg", correct: true },
+                { text: "Bear full body weight on the axillae while supporting balance with hand grips", correct: false },
+                { text: "Move both crutches forward followed by dragging both feet together", correct: false },
+                { text: "Alternate moving each crutch with the opposite foot in lockstep fashion", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 8. INTEGUMENTARY SYSTEM (50 Questions)
+        // 8. HEMATOLOGIC & IMMUNOLOGIC SYSTEM
         // ==========================================
-        { category: "Integumentary System", question: "A pressure injury characterized by full-thickness skin loss with exposed subcutaneous fat, muscle, or bone is classified as Stage:", options: ["Stage 1", "Stage 2", "Stage 3", "Stage 4"], answer: 3 },
-        { category: "Integumentary System", question: "The 'Rule of Nines' is utilized in emergency care to estimate what aspect of a burn injury?", options: ["Depth of tissue destruction", "Total Body Surface Area (TBSA) affected", "Degree of systemic infection risk", "Severity of smoke inhalation damage"], answer: 1 },
-        { category: "Integumentary System", question: "What characterizes a Stage 1 pressure injury?", options: ["Non-blanchable erythema of intact skin", "Partial-thickness skin loss with exposed dermis (blister)", "Full-thickness skin loss with visible adipose tissue", "Full-thickness skin and tissue loss with exposed bone, tendon, or muscle"], answer: 0 },
-        { category: "Integumentary System", question: "What characterizes a Stage 2 pressure injury?", options: ["Non-blanchable redness", "Partial-thickness loss of skin with exposed dermis (pink/red wound bed, blister)", "Full-thickness tissue loss", "Unstageable necrotic tissue"], answer: 1 },
-        { category: "Integumentary System", question: "What is an unstageable pressure injury?", options: ["Full-thickness skin and tissue loss in which the extent of tissue damage within the ulcer cannot be confirmed because it is obscured by slough or eschar", "A mild Stage 1 redness", "A healed scar", "A superficial scratch"], answer: 0 },
-        { category: "Integumentary System", question: "What is deep tissue pressure injury (DTPI)?", options: ["Persistent non-blanchable deep red, maroon, or purple discoloration of intact or non-intact skin revealing dark wound bed or blood-filled blister", "Stage 1 pressure ulcer", "Stage 4 ulcer with exposed bone", "Normal skin bruising"], answer: 0 },
-        { category: "Integumentary System", question: "What percentage of Total Body Surface Area (TBSA) is assigned to the entire anterior and posterior trunk combined using the Rule of Nines in an adult?", options: ["18%", "27%", "36%", "45%"], answer: 2 },
-        { category: "Integumentary System", question: "Using the Rule of Nines in an adult, what percentage is assigned to the entire head and neck combined?", options: ["4.5%", "9%", "18%", "36%"], answer: 1 },
-        { category: "Integumentary System", question: "Using the Rule of Nines in an adult, what percentage is assigned to each entire upper extremity (arm, forearm, hand)?", options: ["4.5%", "9%", "18%", "27%"], answer: 1 },
-        { category: "Integumentary System", question: "Using the Rule of Nines in an adult, what percentage is assigned to each entire lower extremity (leg and thigh)?", options: ["9%", "18%", "27%", "36%"], answer: 1 },
-        { category: "Integumentary System", question: "Using the Rule of Nines in an adult, what percentage is assigned to the perineum / genitalia?", options: ["1%", "5%", "9%", "18%"], answer: 0 },
-        { category: "Integumentary System", question: "What fluid resuscitation formula is standard for calculating fluid requirements in major burn victims during the first 24 hours?", options: ["Parkland formula (4 mL x kg x %TBSA)", "Baxter formula without electrolytes", "Maintenance fluids only", "Half normal saline at 100 mL/hr"], answer: 0 },
-        { category: "Integumentary System", question: "How is fluid administration distributed over time using the Parkland formula?", options: ["Half of total calculated fluids given in the first 8 hours post-burn; remaining half given over the next 16 hours", "All fluids given in the first hour", "Equal volumes every hour for 24 hours", "No fluids in the first 12 hours"], answer: 0 },
-        { category: "Integumentary System", question: "What type of fluid is used for fluid resuscitation during the first 24 hours post-burn?", options: ["Lactated Ringer's solution", "5% Dextrose in Water", "Packed red blood cells", "Fresh frozen plasma"], answer: 0 },
-        { category: "Integumentary System", question: "What is a superficial-partial thickness burn (First/Second degree) characterized by?", options: ["Erythema, pain, and blister formation, moist pink/red wound base", "Painless, charred, dry leathery white/black skin", "Brief redness without blistering", "Deep bone exposure"], answer: 0 },
-        { category: "Integumentary System", question: "What is a full-thickness burn (Third/Fourth degree) characterized by?", options: ["Dry, leathery, white, gray, or charred black skin with no sensation of pain in the burn center", "Severe pain, weeping blisters, and quick blanching", "Mild redness", "Superficial peeling"], answer: 0 },
-        { category: "Integumentary System", question: "What is the ABCDE mnemonic used for evaluating pigmented skin lesions for malignant melanoma?", options: ["Asymmetry, Border irregularity, Color variation, Diameter > 6mm, Evolving/changing", "Age, Bleeding, Consistency, Depth, Edema", "Area, Burn, Color, Drainage, Erythema", "Attachment, Base, Contour, Density, Elevation"], answer: 0 },
-        { category: "Integumentary System", question: "What is shingles (herpes zoster)?", options: ["Reactivation of the varicella-zoster virus residing dormant in sensory root ganglia, causing a painful vesicular rash along a dermatome", "Bacterial skin infection of hair follicles", "Fungal ringworm infection", "Allergic contact dermatitis"], answer: 0 },
-        { category: "Integumentary System", question: "What precautions are required for hospitalized patients with disseminated herpes zoster (shingles)?", options: ["Airborne and contact precautions until lesions are dry and crusted", "Standard precautions only", "Droplet precautions", "Reverse isolation"], answer: 0 },
-        { category: "Integumentary System", question: "What is psoriasis?", options: ["Chronic autoimmune inflammatory skin disorder characterized by silvery scales over well-demarcated red plaques", "Fungal infection of toenails", "Bacterial impetigo", "Hives from allergic reaction"], answer: 0 },
-        { category: "Integumentary System", question: "What is impetigo?", options: ["Contagious superficial bacterial skin infection caused by Staph or Strep, characterized by honey-colored crusts", "Deep fungal abscess", "Viral wart", "Autoimmune blister disease"], answer: 0 },
-        { category: "Integumentary System", question: "What is scabies caused by?", options: ["Infestation of the skin by the itch mite Sarcoptes scabiei, causing intense nocturnal pruritus and burrow lines", "Fungal spores", "Ticks carrying Lyme disease", "Bacterial contamination"], answer: 0 },
-        { category: "Integumentary System", question: "What is pediculosis?", options: ["Infestation by lice (head, body, or pubic lice)", "Fungal ringworm infection", "Scabies mite infestation", "Severe bacterial acne"], answer: 0 },
-        { category: "Integumentary System", question: "What is contact dermatitis?", options: ["Localized inflammatory skin reaction caused by direct contact with an allergen or irritant", "Genetic autoimmune blistering", "Viral rash", "Fungal foot infection"], answer: 0 },
-        { category: "Integumentary System", question: "What is urticaria?", options: ["Hives; vascular skin reaction characterized by pruritic, raised wheals with pale centers", "Chronic scaling plaques", "Blisters from burns", "Pigmented moles"], answer: 0 },
-        { category: "Integumentary System", question: "What is Stevens-Johnson Syndrome (SJS)?", options: ["Severe, life-threatening mucocutaneous drug reaction characterized by blistering, skin detachment resembling scalded skin, and mucosal erosion", "Mild allergic rash", "Chronic fungal infection", "Bacterial cellulitis"], answer: 0 },
-        { category: "Integumentary System", question: "What is cellulitis?", options: ["Acute bacterial infection of the dermis and subcutaneous tissue characterized by localized erythema, warmth, edema, and tenderness", "Fungal skin infection", "Viral herpes outbreak", "Autoimmune rash"], answer: 0 },
-        { category: "Integumentary System", question: "What is the medical term for fungal infection of the nails?", options: ["Onychomycosis (tinea unguium)", "Paronychia", "Impetigo", "Cellulitis"], answer: 0 },
-        { category: "Integumentary System", question: "What is tinea pedis?", options: ["Athlete's foot (fungal infection of the feet)", "Ringworm of the body", "Jock itch", "Fungal nail infection"], answer: 0 },
-        { category: "Integumentary System", question: "What is tinea corporis?", options: ["Ringworm of the body (smooth skin)", "Athlete's foot", "Jock itch", "Scalp ringworm"], answer: 0 },
-        { category: "Integumentary System", question: "What is tinea cruris?", options: ["Jock itch (fungal infection of the groin)", "Athlete's foot", "Ringworm of body", "Nail fungus"], answer: 0 },
-        { category: "Integumentary System", question: "What is basal cell carcinoma?", options: ["Most common, least malignant form of skin cancer arising from epidermal basal cells, rarely metastasizing", "Highly aggressive melanoma", "Squamous cell skin cancer", "Benign birthmark"], answer: 0 },
-        { category: "Integumentary System", question: "What is squamous cell carcinoma of the skin?", options: ["Malignant tumor of epidermal keratinocytes that can metastasize if left untreated", "Benign mole", "Basal cell carcinoma", "Fungal lesion"], answer: 0 },
-        { category: "Integumentary System", question: "What is malignant melanoma?", options: ["Highly malignant cancer arising from melanocytes, associated with UV exposure and high metastasis risk", "Benign freckle", "Superficial fungal rash", "Mild bacterial infection"], answer: 0 },
-        { category: "Integumentary System", question: "What is alopecia?", options: ["Partial or complete loss of hair (baldness)", "Excessive hair growth", "Fungal scalp infection", "Scalp psoriasis"], answer: 0 },
-        { category: "Integumentary System", question: "What is hirsutism?", options: ["Abnormal growth of coarse body and facial hair in women following a male pattern distribution", "Hair loss", "Fungal infection", "Normal skin pigmentation"], answer: 0 },
-        { category: "Integumentary System", question: "What is vitiligo?", options: ["Acquired depigmentation disorder characterized by patches of skin losing melanin color", "Hyperpigmentation mask of pregnancy", "Fungal white spots", "Scar tissue"], answer: 0 },
-        { category: "Integumentary System", question: "What is melasma (chloasma)?", options: ["Brownish hyperpigmentation patches on the face, often associated with pregnancy or oral contraceptives", "Vitiligo depigmentation", "Skin cancer", "Bacterial rash"], answer: 0 },
-        { category: "Integumentary System", question: "What is the primary function of melanin in the skin?", options: ["Protect skin cells from ultraviolet (UV) radiation damage", "Produce vitamin D", "Regulate body temperature", "Synthesize keratin"], answer: 0 },
-        { category: "Integumentary System", question: "Where is vitamin D synthesized in the skin when exposed to sunlight?", options: ["Epidermis (using UV light on 7-dehydrocholesterol)", "Dermal blood vessels", "Subcutaneous adipose tissue", "Sweat glands"], answer: 0 },
-        { category: "Integumentary System", question: "What is the medical term for sweating?", options: ["Diaphoresis / Hidrosis", "Pruritus", "Cyanosis", "Erythema"], answer: 0 },
-        { category: "Integumentary System", question: "What is the medical term for itching?", options: ["Pruritus", "Alopecia", "Urticaria", "Jaundice"], answer: 0 },
-        { category: "Integumentary System", question: "What is petechiae?", options: ["Tiny, pinpont, non-blanching red or purple spots caused by minute intradermal hemorrhages", "Large bruises (ecchymosis)", "Raised hives", "Fungal spots"], answer: 0 },
-        { category: "Integumentary System", question: "What is ecchymosis?", options: ["Bruise; discoloration of skin resulting from bleeding underneath", "Pinpoint bleeding", "Raised wheal", "Blister"], answer: 0 },
-        { category: "Integumentary System", question: "What is purpura?", options: ["Purple spots on the skin resulting from small blood vessels leaking blood into skin, joints, or mucous membranes (larger than petechiae)", "Tiny red dots", "Severe sunburn", "Psoriasis plaque"], answer: 0 },
-        { category: "Integumentary System", question: "What is cyanosis?", options: ["Bluish discoloration of the skin and mucous membranes due to inadequate oxygenation", "Yellowing from jaundice", "Redness from inflammation", "Paleness from anemia"], answer: 0 },
-        { category: "Integumentary System", question: "What is jaundice?", options: ["Yellowish pigmentation of skin and sclera caused by elevated bilirubin levels", "Bluish cyanosis", "Red flush", "Pale anemia"], answer: 0 },
-        { category: "Integumentary System", question: "What is pallor?", options: ["Pale skin color resulting from reduced blood flow or hemoglobin deficiency (anemia)", "Redness", "Yellowing", "Bluish tint"], answer: 0 },
-        { category: "Integumentary System", question: "What is erythema?", options: ["Superficial reddening of the skin, usually in patches, as a result of hyperemia or inflammation", "Paleness", "Cyanosis", "Jaundice"], answer: 0 },
-        { category: "Integumentary System", question: "What is the outermost layer of the skin called?", options: ["Epidermis", "Dermis", "Hypodermis", "Subcutaneous layer"], answer: 0 },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which blood product transfusion reaction requires the nurse to stop the infusion immediately and disconnect the tubing?", 
+            options: [
+                { text: "Acute hemolytic transfusion reaction characterized by flank pain, fever, and hypotension", correct: true },
+                { text: "Mild urticaria and localized itching controlled with oral diphenhydramine", correct: false },
+                { text: "Mild transient febrile response without changes in vital signs", correct: false },
+                { text: "Slight fluid volume expansion noted in stable baseline readings", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "What laboratory parameter is the primary indicator used to guide neutropenic precautions in a cancer patient?", 
+            options: [
+                { text: "Absolute Neutrophil Count (ANC)", correct: true },
+                { text: "Total platelet count volume", correct: false },
+                { text: "Erythrocyte sedimentation rate (ESR)", correct: false },
+                { text: "Activated partial thromboplastin time (aPTT)", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which condition is characterized by widespread microvascular clotting consuming platelets and clotting factors, leading to simultaneous bleeding?", 
+            options: [
+                { text: "Disseminated Intravascular Coagulation (DIC)", correct: true },
+                { text: "Idiopathic Thrombocytopenic Purpura (ITP)", correct: false },
+                { text: "Von Willebrand disease deficiency", correct: false },
+                { text: "Polycythemia vera red cell overproduction", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "What is the primary pathophysiological defect in Hemophilia A?", 
+            options: [
+                { text: "Deficiency or abnormality of coagulation Factor VIII", correct: true },
+                { text: "Autoimmune destruction of circulating blood platelets", correct: false },
+                { text: "Inability of red blood cells to carry adequate oxygen molecules", correct: false },
+                { text: "Excessive bone marrow production of white blood blast cells", correct: false }
+            ] 
+        },
+        { 
+            category: "Hematologic & Immunologic System", 
+            question: "Which instruction is essential for a patient prescribed oral iron supplements for iron-deficiency anemia?", 
+            options: [
+                { text: "Take iron with vitamin C (ascorbic acid) to enhance absorption and expect dark stools", correct: true },
+                { text: "Crush tablets and mix with milk or antacids to prevent gastric irritation", correct: false },
+                { text: "Take medication right before bedtime while lying completely flat", correct: false },
+                { text: "Expect bright red stools as a normal sign of effective drug absorption", correct: false }
+            ] 
+        },
 
         // ==========================================
-        // 9. IMMUNE, HEMATOLOGIC & LYMPHATIC (50 Questions)
+        // 9. INTEGUMENTARY & SENSORY SYSTEM
         // ==========================================
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "An absolute neutrophil count (ANC) below 500/mm³ places a client at critical risk for:", options: ["Severe hemorrhage", "Severe opportunistic infection (Neutropenia precautions)", "Thromboembolism", "Anaphylactic shock"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What type of hypersensitivity reaction is an immediate, IgE-mediated allergic response (e.g., anaphylaxis)?", options: ["Type I", "Type II", "Type III", "Type IV"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is a Type II hypersensitivity reaction mediated by?", options: ["Cytotoxic / antibody-mediated (IgG or IgM) destruction of cells (e.g., blood transfusion reaction)", "Immediate IgE response", "Immune complex deposition", "Delayed cell-mediated T-cell response"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What characterizes a Type III hypersensitivity reaction?", options: ["Immune complex-mediated reactions (e.g., systemic lupus erythematosus, serum sickness)", "Immediate IgE allergy", "Cytotoxic cell lysis", "Delayed T-cell hypersensitivity"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What characterizes a Type IV hypersensitivity reaction?", options: ["Delayed, cell-mediated hypersensitivity involving T-lymphocytes (e.g., contact dermatitis, tuberculin skin test)", "Immediate antibody response", "Immune complex deposition", "Complement activation"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the primary action of epinephrine in treating acute anaphylaxis?", options: ["Bronchodilation, vasoconstriction, and stabilization of mast cells to reverse shock and airway obstruction", "Antihistamine suppression only", "Lower blood pressure", "Induce sedation"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is normal adult hemoglobin (Hgb) range?", options: ["6 to 9 g/dL", "12 to 18 g/dL (varies by sex)", "20 to 25 g/dL", "30 to 35 g/dL"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is normal adult hematocrit (Hct) range?", options: ["15% to 25%", "36% to 50%", "55% to 65%", "70% to 80%"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is normal adult platelet count range?", options: ["50,000 to 100,000 /mm³", "150,000 to 400,000 /mm³", "500,000 to 800,000 /mm³", "1,000,000 /mm³"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is normal adult White Blood Cell (WBC) count range?", options: ["1,000 to 3,000 /mm³", "4,500 to 11,000 /mm³", "15,000 to 20,000 /mm³", "25,000 to 30,000 /mm³"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is iron deficiency anemia characterized by in terms of red blood cell indices?", options: ["Microcytic, hypochromic red blood cells", "Macrocytic, megaloblastic red blood cells", "Normocytic, normochromic cells", "Normal indices with high counts"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is pernicious anemia caused by?", options: ["Vitamin B12 deficiency resulting from lack of intrinsic factor secretion by gastric parietal cells", "Acute iron loss from bleeding", "Genetic hemoglobin mutation", "Folic acid abundance"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "How must liquid iron supplements be administered orally to prevent tooth staining?", options: ["Dilute in water or juice, drink through a straw, and rinse mouth afterward", "Brush teeth vigorously immediately", "Swallow dry pills without water", "Mix directly into milk"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is sickle cell anemia caused by?", options: ["Genetic mutation producing abnormal hemoglobin S that causes red blood cells to stiffen and sickle under hypoxia, leading to vascular occlusion", "Autoimmune destruction of platelets", "Vitamin B12 deficiency", "Viral bone marrow suppression"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What are primary nursing interventions during a sickle cell crisis?", options: ["Pain management, aggressive hydration (IV fluids), and supplemental oxygen to treat hypoxia", "Strict fluid restriction and bed rest without pain meds", "Blood thinners and iron infusions", "Cold ice baths"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is hemophilia A?", options: ["X-linked recessive bleeding disorder caused by deficiency of clotting Factor VIII", "Platelet function defect", "Factor IX deficiency (Hemophilia B)", "Vitamin K deficiency"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is immune thrombocytopenic purpura (ITP)?", options: ["Autoimmune disorder characterized by antibody-mediated destruction of platelets leading to petechiae, purpura, and bleeding", "Clotting factor deficiency", "WBC cancer", "Bone marrow failure"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is disseminated intravascular coagulation (DIC)?", options: ["Complex, life-threatening condition characterized by widespread microvascular clotting followed by depletion of clotting factors and severe hemorrhage", "Localized blood clot in calf", "Benign platelet elevation", "Autoimmune joint swelling"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What lab findings are typical in DIC?", options: ["Prolonged PT/aPTT, low fibrinogen, elevated D-dimer, and low platelet count", "Shortened clotting times and high platelets", "Normal coagulation with high hemoglobin", "Elevated red blood cells"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is leukemia?", options: ["Malignant cancer of blood-forming tissues characterized by uncontrolled production of abnormal white blood cells in bone marrow", "Benign lymph node enlargement", "Platelet deficiency", "Iron deficiency"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is Hodgkin's lymphoma characterized by the presence of?", options: ["Reed-Sternberg cells in lymph node biopsy", "Bence-Jones proteins in urine", "Philadelphia chromosome", "Sickle cells"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is multiple myeloma?", options: ["Malignant proliferation of plasma cells in bone marrow producing abnormal monoclonal immunoglobulins (Bence-Jones proteins) and bone destruction", "Lymph node cancer with Reed-Sternberg cells", "Leukemia of white blood cells", "Benign bone tumor"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What lab and diagnostic findings are classic for multiple myeloma?", options: ["Hypercalcemia, bone lesions ('punched-out' lytic lesions), Bence-Jones protein in urine, and elevated serum protein", "Hypocalcemia and dense bone sclerosis", "Low protein and normal calcium", "Decreased serum creatinine"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the nurse's immediate action if a patient receiving a blood transfusion develops fever, chills, back pain, and hypotension?", options: ["Stop the blood transfusion immediately, disconnect tubing, infuse normal saline through new tubing, and notify the blood bank and physician", "Slow the transfusion rate down and give Tylenol", "Continue transfusion while monitoring vital signs", "Administer high-flow oxygen only"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What type of reaction is a hemolytic transfusion reaction?", options: ["Type II cytotoxic hypersensitivity reaction", "Type I immediate allergy", "Type III immune complex", "Type IV delayed cell-mediated"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "Within what timeframe must a unit of packed red blood cells be infused once removed from the blood bank refrigerator?", options: ["Within 15 minutes", "Within 4 hours", "Within 12 hours", "Within 24 hours"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What gauge IV catheter is generally recommended for administering blood products safely without hemolysis?", options: ["14 to 16 gauge", "18 to 20 gauge (or larger)", "24 gauge", "Micro-bore catheter"], answer: 1 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "Which IV solution is compatible and can be hung with blood products?", options: ["0.9% Sodium Chloride (Normal Saline)", "5% Dextrose in Water (D5W)", "Lactated Ringer's", "0.45% Sodium Chloride"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is systemic lupus erythematosus (SLE)?", options: ["Chronic multisystem inflammatory autoimmune disease characterized by autoantibody production (e.g., ANA) and classic butterfly facial rash", "Localized skin fungal infection", "Degenerative joint disease", "Acute bacterial sepsis"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is rheumatoid arthritis classified as?", options: ["Systemic autoimmune inflammatory disease targeting synovial joints", "Degenerative wear-and-tear arthritis", "Infectious joint disease", "Metabolic crystal arthritis"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is human immunodeficiency virus (HIV) primary cellular target?", options: ["CD4+ T-helper lymphocytes", "Red blood cells", "Platelets", "B-lymphocytes"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "At what CD4+ T-lymphocyte count does HIV progress to Acquired Immunodeficiency Syndrome (AIDS) according to CDC criteria?", options: ["Below 200 cells/mm³ (or presence of an AIDS-defining illness)", "Below 500 cells/mm³", "Below 1000 cells/mm³", "Any positive antibody test"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What precautions are required for healthcare workers dealing with body fluids to prevent HIV transmission?", options: ["Standard precautions (wearing gloves, gowns, eye protection when risk of splash)", "Strict airborne isolation", "Droplet isolation", "No precautions needed"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is natural active immunity?", options: ["Immunity developed following exposure to an infectious agent and recovery from the disease", "Immunity conferred by receiving immune globulin injections", "Antibodies passed from mother to baby via placenta", "Vaccination"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is artificial active immunity?", options: ["Immunity acquired through vaccination (introducing antigen to stimulate immune response)", "Getting infected naturally", "Receiving donor antibodies", "Placental antibody transfer"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is natural passive immunity?", options: ["Antibodies passed naturally from mother to infant via placenta and breast milk", "Receiving an antivenom injection", "Tetnus vaccine", "Active disease recovery"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is artificial passive immunity?", options: ["Administration of preformed antibodies (immune globulin or antitoxin) for immediate temporary protection", "Vaccine administration", "Natural infection", "Breastfeeding"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the function of the spleen in the hematologic and lymphatic systems?", options: ["Filter blood, remove old/damaged red blood cells, store platelets, and mount immune responses", "Produce digestive enzymes", "Filter lymph fluid from legs", "Produce insulin"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is lymphadenopathy?", options: ["Enlargement of lymph nodes, often indicating infection, inflammation, or malignancy", "Swelling of the spleen", "Low white blood cell count", "Inflammation of blood vessels"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is lymphedema?", options: ["Localized fluid retention and tissue swelling caused by compromised lymphatic drainage (e.g., after lymph node dissection)", "Blood clot in veins", "Fatty tissue buildup", "Ascites in abdomen"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the primary role of neutrophils in the immune response?", options: ["Phagocytosis of bacteria during acute inflammatory and infectious processes", "Produce antibodies", "Destroy parasite infections", "Mediate allergic reactions"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "Which white blood cells are elevated primarily during parasitic infections and allergic reactions?", options: ["Eosinophils", "Neutrophils", "Lymphocytes", "Monocytes"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "Which white blood cells release histamine and heparin during inflammatory and allergic responses?", options: ["Basophils and mast cells", "Neutrophils", "Platelets", "Erythrocytes"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the universal red blood cell donor type (packed RBCs)?", options: ["Type O negative", "Type AB positive", "Type A positive", "Type B negative"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the universal plasma donor type?", options: ["Type AB", "Type O", "Type A", "Type B"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is erythroblastosis fetalis (hemolytic disease of the newborn)?", options: ["Rh incompatibility where Rh-negative mother develops antibodies against Rh-positive fetus's red blood cells", "Iron deficiency in newborns", "WBC cancer in infants", "Platelet destruction"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What medication is administered to Rh-negative mothers to prevent sensitization and hemolytic disease of the newborn?", options: ["Rho(D) immune globulin (RhoGAM)", "Vitamin K", "Heparin", "Aspirin"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is the primary function of platelets (thrombocytes)?", options: ["Hemostasis and blood clotting by forming platelet plugs at sites of vascular injury", "Fight bacterial infections", "Carry oxygen to tissues", "Produce antibodies"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is neutropenic precaution (protective isolation)?", options: ["Specialized precautions for immunocompromised patients with low ANC to prevent opportunistic infection (private room, strict handwashing, no fresh flowers/fruits/vegetables)", "Airborne isolation for tuberculosis", "Contact precautions for C. diff", "Standard precautions only"], answer: 0 },
-        { category: "Immune, Hematologic, and Lymphatic Systems", question: "What is immunocompetence?", options: ["The body's ability to produce a normal immune response following exposure to an antigen", "Failure of the immune system", "Autoimmune destruction", "Allergic hypersensitivity"], answer: 0 }
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Using the Rule of Nines, what is the estimated total body surface area (TBSA) burned for an adult client with burns to the entire anterior trunk and both entire arms?", 
+            options: [
+                { text: "36% TBSA burn", correct: true },
+                { text: "27% TBSA burn", correct: false },
+                { text: "45% TBSA burn", correct: false },
+                { text: "18% TBSA burn", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Which staging classification describes a pressure injury with full-thickness skin loss where adipose tissue is visible and granulation tissue is present?", 
+            options: [
+                { text: "Stage 3 Pressure Injury", correct: true },
+                { text: "Stage 2 Pressure Injury", correct: false },
+                { text: "Stage 4 Pressure Injury", correct: false },
+                { text: "Unstageable Pressure Injury", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "What clinical presentation is characteristic of acute angle-closure glaucoma, representing an ocular emergency?", 
+            options: [
+                { text: "Sudden severe eye pain, blurred vision, colored halos around lights, and a fixed mid-dilated pupil", correct: true },
+                { text: "Gradual loss of peripheral vision with painless tunnel vision development", correct: false },
+                { text: "Painless cloudy vision with progressive glare sensitivity over years", correct: false },
+                { text: "Bilateral purulent discharge with intense itching and morning crusting", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "Which instruction should be provided to a patient following cataract extraction surgery?", 
+            options: [
+                { text: "Avoid bending at the waist, heavy lifting, or straining to prevent intraocular pressure spikes", correct: true },
+                { text: "Sleep flat on the operative side to promote proper drainage of the eye", correct: false },
+                { text: "Scrub the operative eye vigorously with soap and water twice daily", correct: false },
+                { text: "Resume heavy contact sports immediately once the eye patch is removed", correct: false }
+            ] 
+        },
+        { 
+            category: "Integumentary & Sensory System", 
+            question: "What is a primary clinical manifestation associated with Meniere's disease?", 
+            options: [
+                { text: "Episodic vertigo, tinnitus, fluctuating sensorineural hearing loss, and a feeling of fullness in the ear", correct: true },
+                { text: "Chronic painless drainage from the external auditory canal", correct: false },
+                { text: "Sudden conductive hearing loss triggered by loud environmental noises", correct: false },
+                { text: "Severe sharp pain radiating from the jaw to the middle ear structure", correct: false }
+            ] 
+        }
     ];
 
-    let currentMode = ''; // 'test' or 'category'
-    let activeQuestions = [];
+    let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
-    let missedCategories = {}; // Tracks misses for Test Knowledge mode
+    let categoryStats = {};
 
-    // Initialize Category Menu buttons
-    function initCategoryMenu() {
-        const categories = [...new Set(questionBank.map(q => q.category))];
-        const container = document.getElementById('category-buttons');
-        container.innerHTML = '';
-        
-        categories.forEach(cat => {
-            const btn = document.createElement('button');
-            btn.className = 'btn option-btn';
-            btn.textContent = cat;
-            btn.onclick = () => startCategoryMode(cat);
-            container.appendChild(btn);
-        });
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 
     function showScreen(screenId) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
-        document.querySelector('.container').scrollTop = 0;
-    }
-
-    function showCategoryMenu() {
-        initCategoryMenu();
-        showScreen('category-menu');
     }
 
     function startTestKnowledgeMode() {
-        currentMode = 'test';
-        // Pick 50 random questions across all categories for Test Mode
-        activeQuestions = [...questionBank].sort(() => 0.5 - Math.random()).slice(0, 50);
-        currentIndex = 0;
-        score = 0;
-        missedCategories = {};
-        showScreen('quiz-screen');
-        loadQuestion();
+        currentQuestions = shuffleArray([...questionBank]);
+        initQuiz();
     }
 
-    function startCategoryMode(categoryName) {
-        currentMode = 'category';
-        // Filter all questions for this category (50 questions available)
-        activeQuestions = questionBank.filter(q => q.category === categoryName);
+    function showCategoryMenu() {
+        const categories = [...new Set(questionBank.map(q => q.category))];
+        const grid = document.getElementById("category-buttons");
+        grid.innerHTML = "";
+        
+        categories.forEach(cat => {
+            const btn = document.createElement("button");
+            btn.className = "btn";
+            btn.textContent = cat;
+            btn.onclick = () => startCategoryMode(cat);
+            grid.appendChild(btn);
+        });
+
+        showScreen("category-menu");
+    }
+
+    function startCategoryMode(category) {
+        currentQuestions = shuffleArray(questionBank.filter(q => q.category === category));
+        initQuiz();
+    }
+
+    function initQuiz() {
         currentIndex = 0;
         score = 0;
-        showScreen('quiz-screen');
+        categoryStats = {};
+        showScreen("quiz-screen");
         loadQuestion();
     }
 
     function loadQuestion() {
-        const q = activeQuestions[currentIndex];
-        document.getElementById('progress-indicator').textContent = `Question ${currentIndex + 1} of ${activeQuestions.length} (${q.category})`;
-        document.getElementById('question-text').textContent = q.question;
-        document.getElementById('feedback-display').textContent = '';
-        document.getElementById('next-btn').style.display = 'none';
+        if (currentIndex >= currentQuestions.length) {
+            showResults();
+            return;
+        }
 
-        const optionsContainer = document.getElementById('options-container');
-        optionsContainer.innerHTML = '';
+        const q = currentQuestions[currentIndex];
+        document.getElementById("progress-indicator").textContent = `Question ${currentIndex + 1} of ${currentQuestions.length}`;
+        document.getElementById("question-text").textContent = q.question;
+        document.getElementById("feedback-display").textContent = "";
+        document.getElementById("next-btn").style.display = "none";
 
-        q.options.forEach((opt, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'btn option-btn';
-            btn.textContent = opt;
-            btn.onclick = () => selectAnswer(index);
-            optionsContainer.appendChild(btn);
+        const container = document.getElementById("options-container");
+        container.innerHTML = "";
+
+        let shuffledOptions = shuffleArray([...q.options]);
+
+        shuffledOptions.forEach(opt => {
+            const btn = document.createElement("button");
+            btn.className = "btn option-btn";
+            btn.textContent = opt.text;
+            btn.onclick = () => selectOption(opt.correct, btn, shuffledOptions);
+            container.appendChild(btn);
         });
     }
 
-    function selectAnswer(selectedIndex) {
-        const q = activeQuestions[currentIndex];
-        const optionButtons = document.querySelectorAll('#options-container .option-btn');
+    function selectOption(isCorrect, selectedBtn, allOptions) {
+        const container = document.getElementById("options-container");
+        const buttons = container.getElementsByTagName("button");
         
-        // Disable all option buttons after choice
-        optionButtons.forEach(btn => btn.onclick = null);
-
-        const feedback = document.getElementById('feedback-display');
-
-        if (selectedIndex === q.answer) {
-            optionButtons[selectedIndex].classList.add('correct');
-            score++;
-            if (currentMode === 'category') {
-                feedback.style.color = "var(--success)";
-                feedback.textContent = "Correct! Excellent job keeping your clinical judgment sharp.";
-            }
-        } else {
-            optionButtons[selectedIndex].classList.add('incorrect');
-            optionButtons[q.answer].classList.add('correct'); // Reveal right answer
-            
-            if (currentMode === 'category') {
-                feedback.style.color = "var(--error)";
-                feedback.textContent = `Incorrect. The correct answer is: ${q.options[q.answer]}`;
-            } else {
-                // Track areas of improvement for Test Mode
-                missedCategories[q.category] = (missedCategories[q.category] || 0) + 1;
+        for (let btn of buttons) {
+            btn.disabled = true;
+            const matchingOpt = allOptions.find(o => o.text === btn.textContent);
+            if (matchingOpt && matchingOpt.correct) {
+                btn.classList.add("correct");
             }
         }
 
-        document.getElementById('next-btn').style.display = 'block';
+        const feedback = document.getElementById("feedback-display");
+        const q = currentQuestions[currentIndex];
+
+        if (!categoryStats[q.category]) {
+            categoryStats[q.category] = { total: 0, correct: 0 };
+        }
+        categoryStats[q.category].total++;
+
+        if (isCorrect) {
+            selectedBtn.classList.add("correct");
+            feedback.style.color = "var(--success)";
+            feedback.textContent = "Correct! Great clinical reasoning.";
+            score++;
+            categoryStats[q.category].correct++;
+        } else {
+            selectedBtn.classList.add("incorrect");
+            feedback.style.color = "var(--error)";
+            feedback.textContent = "Incorrect. Review the highlighted correct choice above.";
+        }
+
+        document.getElementById("next-btn").style.display = "block";
     }
 
     function nextQuestion() {
         currentIndex++;
-        if (currentIndex < activeQuestions.length) {
-            loadQuestion();
-        } else {
-            showResults();
-        }
+        loadQuestion();
     }
 
     function showResults() {
-        showScreen('results-screen');
-        const statsBox = document.getElementById('results-stats');
-        let html = `<p>You scored <strong>${score}</strong> out of <strong>${activeQuestions.length}</strong>.</p>`;
-
-        if (currentMode === 'test') {
-            const missedKeys = Object.keys(missedCategories);
-            if (missedKeys.length > 0) {
-                html += `<p style="text-align: left; color: var(--text); margin-top: 1rem;"><strong>Areas where you need more review:</strong></p><ul style="text-align: left; color: var(--text-light); padding-left: 1.5rem;">`;
-                for (let cat of missedKeys) {
-                    html += `<li>${cat}: ${missedCategories[cat]} missed question(s)</li>`;
-                }
-                html += `</ul>`;
-            } else {
-                html += `<p style="color: var(--success); font-weight: bold;">Flawless performance across all systems! Outstanding mastery.</p>`;
-            }
+        showScreen("results-screen");
+        const statsBox = document.getElementById("results-stats");
+        let html = `<h3>Total Score: ${score} / ${currentQuestions.length}</h3>`;
+        
+        for (let cat in categoryStats) {
+            let stat = categoryStats[cat];
+            let percent = Math.round((stat.correct / stat.total) * 100);
+            html += `<p><strong>${cat}:</strong> ${stat.correct}/${stat.total} (${percent}%)</p>`;
         }
-
+        
         statsBox.innerHTML = html;
     }
 </script>
